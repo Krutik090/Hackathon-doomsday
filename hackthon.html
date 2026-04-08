@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hackathon 2026 - Avengers Doomsday Edition</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Teko:wght@400;500;600;700&family=Rajdhani:wght@400;500;600;700&family=Exo+2:wght@300;400;500;600;700;800&family=Orbitron:wght@400;500;600;700;800;900&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="./styles.css">
+</head>
+
+<body>
+
+  <!-- Noise texture -->
+  <div class="noise" aria-hidden="true"></div>
+
+  <!-- Custom cursor -->
+  <div id="cursor" aria-hidden="true">
+    <div id="cursor-dot"></div>
+    <div id="cursor-ring"></div>
+  </div>
+
+
+  <!-- Nav -->
+  <nav id="main-nav">
+    <a href="#hero" class="nav-logo">
+      DoomsDay<span class="logo-accent">.</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#tracks">Tracks</a></li>
+      <li><a href="#timeline">Timeline</a></li>
+      <li><a href="#prizes">Prizes</a></li>
+      <li><a href="#sponsors">Partners</a></li>
+      <li><a href="#faq">FAQ</a></li>
+    </ul>
+    <a href="#footer" class="nav-cta nav-links">Register Now</a>
+  </nav>
+
+  <!-- HERO -->
+  <section id="hero">
+    <div class="grid-overlay" aria-hidden="true"></div>
+    <canvas id="hero-canvas" aria-hidden="true"></canvas>
+
+    <div class="hero-badge">
+      <span></span> CHARUSAT × Tribastion Technologies
+    </div>
+
+    <h1 class="hero-title">
+      <span class="line1">DoomsDay</span>
+      <span class="line2">HackAthon</span>
+    </h1>
+
+    <p class="hero-sub">
+      Where brilliant minds converge to build the future in the face of ultimate challenges - a 48-hour hackathon
+      pushing the boundaries of cybersecurity, artificial intelligence, and innovation in the age of Doomsday.
+    </p>
+
+    <div class="hero-meta">
+      <div class="hero-meta-item">
+        <span class="dot"></span>
+        <span>June 2026</span>
+      </div>
+      <div class="hero-meta-item" style="color:var(--c-faint)">·</div>
+      <div class="hero-meta-item">
+        <span class="dot" style="background:var(--c-crimson);box-shadow:0 0 6px var(--c-crimson)"></span>
+        <span>CHARUSAT University, Anand</span>
+      </div>
+      <div class="hero-meta-item" style="color:var(--c-faint)">·</div>
+      <div class="hero-meta-item">
+        <span class="dot" style="background:var(--c-gold);box-shadow:0 0 6px var(--c-gold)"></span>
+        <span>48 Hours</span>
+      </div>
+    </div>
+
+    <div class="hero-btns">
+      <a href="#footer" class="btn-primary">ASSEMBLE NOW</a>
+      <a href="#about" class="btn-secondary">Learn More</a>
+    </div>
+
+    <div class="countdown" id="countdown">
+      <div class="countdown-item">
+        <span class="countdown-num" id="cd-days">--</span>
+        <span class="countdown-label">Days</span>
+      </div>
+      <span class="countdown-sep">:</span>
+      <div class="countdown-item">
+        <span class="countdown-num" id="cd-hours">--</span>
+        <span class="countdown-label">Hours</span>
+      </div>
+      <span class="countdown-sep">:</span>
+      <div class="countdown-item">
+        <span class="countdown-num" id="cd-min">--</span>
+        <span class="countdown-label">Minutes</span>
+      </div>
+      <span class="countdown-sep">:</span>
+      <div class="countdown-item">
+        <span class="countdown-num" id="cd-sec">--</span>
+        <span class="countdown-label">Seconds</span>
+      </div>
+    </div>
+
+    <div class="scroll-hint" onclick="document.getElementById('about').scrollIntoView({behavior:'smooth'})">
+      <span>Scroll</span>
+      <div class="scroll-line"></div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+
+    <!-- Captain America Shield scroll transition -->
+    <div id="shield-transition" aria-hidden="true">
+      <svg viewBox="0 0 100 100">
+
+        <!-- Outer red ring -->
+        <circle cx="50" cy="50" r="48" fill="url(#redOuter)" />
+
+        <!-- White ring -->
+        <circle cx="50" cy="50" r="36" fill="url(#whiteRing)" />
+
+        <!-- Inner red ring -->
+        <circle cx="50" cy="50" r="24" fill="url(#redInner)" />
+
+        <!-- Blue center -->
+        <circle cx="50" cy="50" r="12" fill="url(#blueCore)" />
+
+        <!-- Star -->
+        <polygon points="50,40 52,47 60,47 54,51 56,58 50,54 44,58 46,51 40,47 48,47" fill="#ffffff" />
+
+        <!-- Gradients -->
+        <defs>
+          <radialGradient id="redOuter" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="#ff3b3b" />
+            <stop offset="100%" stop-color="#7a0000" />
+          </radialGradient>
+
+          <radialGradient id="whiteRing">
+            <stop offset="0%" stop-color="#ffffff" />
+            <stop offset="100%" stop-color="#cfcfcf" />
+          </radialGradient>
+
+          <radialGradient id="redInner">
+            <stop offset="0%" stop-color="#ff4d4d" />
+            <stop offset="100%" stop-color="#8b0000" />
+          </radialGradient>
+
+          <radialGradient id="blueCore">
+            <stop offset="0%" stop-color="#4da6ff" />
+            <stop offset="100%" stop-color="#002f6c" />
+          </radialGradient>
+        </defs>
+
+      </svg>
+    </div>
+
+    <div class="section-inner">
+      <div class="reveal">
+        <div class="section-label">About the Event</div>
+        <h2 class="section-title">More than a<br><span class="gradient-text">hackathon.</span></h2>
+      </div>
+
+      <div class="about-grid">
+        <div>
+          <p class="section-body reveal reveal-delay-1">
+            HACKATHON 2026 Doomsday Edition is a premier innovation marathon born from a powerful collaboration
+            between <strong style="color:var(--c-text)">CHARUSAT University</strong> and <strong
+              style="color:var(--c-text)">Tribastion</strong> - where heroes are forged through code.
+          </p>
+          <p class="section-body reveal reveal-delay-2" style="margin-top:1rem">
+            Over 48 intense hours, teams of 2–4 will face critical challenges in cybersecurity, AI, and emerging tech
+            - building solutions for tomorrow's threats, with mentorship from industry veterans.
+          </p>
+
+          <div class="about-features reveal reveal-delay-3">
+            <div class="about-feature">
+              <div class="feature-icon">🛡</div>
+              <div class="feature-text">
+                <h4>Mission-Critical Challenges</h4>
+                <p>Real-world problem statements curated by Tribastion's security researchers and CHARUSAT faculty.</p>
+              </div>
+            </div>
+            <div class="about-feature">
+              <div class="feature-icon v">🤖</div>
+              <div class="feature-text">
+                <h4>Elite Mentorship</h4>
+                <p>Dedicated mentors from cybersecurity, AI, and product industries throughout the event.</p>
+              </div>
+            </div>
+            <div class="about-feature">
+              <div class="feature-icon g">⚡</div>
+              <div class="feature-text">
+                <h4>Assemble Your Team</h4>
+                <p>Undergraduate, postgraduate, and early-career professionals - all are welcome to join the fight.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="org-logos reveal reveal-delay-4">
+            <div class="org-logo-box">CHARU<span>SAT</span></div>
+            <div class="org-logo-box" style="color:var(--c-crimson)">Tri<span style="color:var(--c-gold)">bastion</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="about-visual reveal reveal-delay-2">
+          <div class="about-card about-card-main" style="padding-right: 120px;">
+            <div style="margin-bottom:1rem">
+              <div
+                style="font-family:var(--font-mono);font-size:0.65rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--c-crimson);margin-bottom:0.5rem">
+                Participation</div>
+              <div class="about-stat">500+</div>
+              <div class="about-stat-label">Expected Hackers</div>
+            </div>
+            <div
+              style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;border-top:1px solid var(--c-border);padding-top:1rem;margin-top:0.5rem">
+              <div>
+                <div class="about-stat" style="font-size:1.8rem">100+</div>
+                <div class="about-stat-label">Teams</div>
+              </div>
+              <div>
+                <div class="about-stat" style="font-size:1.8rem">25+</div>
+                <div class="about-stat-label">Mentors</div>
+              </div>
+            </div>
+          </div>
+          <div class="about-card about-card-float1">
+            <div class="about-stat" style="font-size:1.8rem;color:var(--c-crimson)">₹3L+</div>
+            <div class="about-stat-label">Prize Pool</div>
+          </div>
+          <div class="about-card about-card-float2">
+            <div class="about-stat" style="font-size:1.8rem;color:var(--c-gold)">48h</div>
+            <div class="about-stat-label">Non-stop Hacking</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TRACKS -->
+  <section id="tracks">
+    <div class="section-inner">
+      <div class="reveal">
+        <div class="section-label">Competition Tracks</div>
+        <h2 class="section-title">Choose your<br><span class="gradient-text">battleground.</span></h2>
+      </div>
+      <div class="tracks-grid" style="margin-top:3.5rem">
+        <div class="track-card reveal reveal-delay-1" style="--card-glow:linear-gradient(135deg,rgba(0,255,170,0.15),transparent);
+--card-accent:rgba(0,255,170,0.7);
+--icon-bg:rgba(0,255,170,0.15);
+--icon-border:rgba(0,255,170,0.3)">
+          <div class="track-num">01</div>
+          <div class="track-icon">🛡</div>
+          <div class="track-title">Cybersecurity</div>
+          <p class="track-desc">Build defensive tools, exploit detection systems, threat intelligence platforms, or
+            privacy-preserving technologies to defend the digital realm.</p>
+          <div class="track-tags">
+            <span class="track-tag"
+              style="--tag-bg:rgba(220,20,60,0.1);--tag-color:var(--c-crimson);--tag-border:rgba(220,20,60,0.2)">CTF</span>
+            <span class="track-tag"
+              style="--tag-bg:rgba(220,20,60,0.1);--tag-color:var(--c-crimson);--tag-border:rgba(220,20,60,0.2)">Threat
+              Detection</span>
+            <span class="track-tag"
+              style="--tag-bg:rgba(220,20,60,0.1);--tag-color:var(--c-crimson);--tag-border:rgba(220,20,60,0.2)">Zero
+              Trust</span>
+          </div>
+        </div>
+
+        <div class="track-card reveal reveal-delay-2"
+          style="--card-glow:linear-gradient(135deg,rgba(255,215,0,0.1),transparent);--card-accent:rgba(255,215,0,0.6);--icon-bg:rgba(255,215,0,0.1);--icon-border:rgba(255,215,0,0.3)">
+          <div class="track-num">02</div>
+          <div class="track-icon" style="background:rgba(255,215,0,0.1);border-color:rgba(255,215,0,0.3)">🤖</div>
+          <div class="track-title">AI / Machine Learning</div>
+          <p class="track-desc">Harness the power of intelligent systems - from NLP and computer vision to generative
+            AI and autonomous decision-making for humanity's survival.</p>
+          <div class="track-tags">
+            <span class="track-tag"
+              style="--tag-bg:rgba(255,215,0,0.08);--tag-color:var(--c-gold);--tag-border:rgba(255,215,0,0.2)">LLMs</span>
+            <span class="track-tag"
+              style="--tag-bg:rgba(255,215,0,0.08);--tag-color:var(--c-gold);--tag-border:rgba(255,215,0,0.2)">Computer
+              Vision</span>
+            <span class="track-tag"
+              style="--tag-bg:rgba(255,215,0,0.08);--tag-color:var(--c-gold);--tag-border:rgba(255,215,0,0.2)">MLOps</span>
+          </div>
+        </div>
+
+        <div class="track-card reveal reveal-delay-3"
+          style="--card-glow:linear-gradient(135deg,rgba(218,165,32,0.1),transparent);--card-accent:rgba(218,165,32,0.6);--icon-bg:rgba(218,165,32,0.1);--icon-border:rgba(218,165,32,0.3)">
+          <div class="track-num">03</div>
+          <div class="track-icon" style="background:rgba(218,165,32,0.1);border-color:rgba(218,165,32,0.3)">🌐</div>
+          <div class="track-title">Web / SaaS</div>
+          <p class="track-desc">Design and ship production-grade web applications, developer tools, or B2B SaaS products
+            with real utility in the battle ahead.</p>
+          <div class="track-tags">
+            <span class="track-tag"
+              style="--tag-bg:rgba(218,165,32,0.08);--tag-color:var(--c-brass);--tag-border:rgba(218,165,32,0.2)">Full
+              Stack</span>
+            <span class="track-tag"
+              style="--tag-bg:rgba(218,165,32,0.08);--tag-color:var(--c-brass);--tag-border:rgba(218,165,32,0.2)">APIs</span>
+            <span class="track-tag"
+              style="--tag-bg:rgba(218,165,32,0.08);--tag-color:var(--c-brass);--tag-border:rgba(218,165,32,0.2)">DevTools</span>
+          </div>
+        </div>
+
+        <div class="track-card reveal reveal-delay-4"
+          style="--card-glow:linear-gradient(135deg,rgba(139,0,0,0.1),transparent);--card-accent:rgba(139,0,0,0.6);--icon-bg:rgba(139,0,0,0.15);--icon-border:rgba(139,0,0,0.3)">
+          <div class="track-num">04</div>
+          <div class="track-icon" style="background:rgba(139,0,0,0.15);border-color:rgba(139,0,0,0.3)">⚔️</div>
+          <div class="track-title">Open Innovation</div>
+          <p class="track-desc">No constraints - your vision, your rules. Build anything that creates meaningful impact
+            in our darkest hour: climate tech, healthcare, EdTech, fintech, or beyond.</p>
+          <div class="track-tags">
+            <span class="track-tag"
+              style="--tag-bg:rgba(139,0,0,0.1);--tag-color:var(--c-doom);--tag-border:rgba(139,0,0,0.2)">Impact</span>
+            <span class="track-tag"
+              style="--tag-bg:rgba(139,0,0,0.1);--tag-color:var(--c-doom);--tag-border:rgba(139,0,0,0.2)">Social
+              Good</span>
+            <span class="track-tag"
+              style="--tag-bg:rgba(139,0,0,0.1);--tag-color:var(--c-doom);--tag-border:rgba(139,0,0,0.2)">Moonshots</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TIMELINE -->
+  <section id="timeline">
+    <div class="section-inner">
+      <div class="reveal">
+        <div class="section-label">Event Timeline</div>
+        <h2 class="section-title">Mark your<br><span class="gradient-text">calendar.</span></h2>
+      </div>
+
+      <div class="timeline-wrapper reveal" style="margin-top:4rem">
+        <div class="timeline-line">
+          <div class="timeline-line-fill" id="timeline-fill"></div>
+        </div>
+        <div class="timeline-items">
+          <div class="timeline-item active">
+            <div class="timeline-dot-wrap">
+              <div class="timeline-dot-ring"></div>
+              <div class="timeline-dot"></div>
+            </div>
+            <div class="timeline-content">
+              <div class="timeline-date">Apr 2026</div>
+              <div class="timeline-event">Registrations Open</div>
+              <div class="timeline-detail">Team and solo sign-ups begin. Limited seats available.</div>
+            </div>
+          </div>
+          <div class="timeline-item active">
+            <div class="timeline-dot-wrap">
+              <div class="timeline-dot-ring"></div>
+              <div class="timeline-dot"></div>
+            </div>
+            <div class="timeline-content">
+              <div class="timeline-date">May 15, 2026</div>
+              <div class="timeline-event">Team Confirmation</div>
+              <div class="timeline-detail">Final team rosters locked. Problem statements revealed.</div>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-dot-wrap">
+              <div class="timeline-dot"></div>
+            </div>
+            <div class="timeline-content">
+              <div class="timeline-date" style="color:var(--c-muted)">Jun 6, 2026</div>
+              <div class="timeline-event">Doomsday Begins</div>
+              <div class="timeline-detail">48-hour clock starts. Opening ceremony at CHARUSAT.</div>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-dot-wrap">
+              <div class="timeline-dot"></div>
+            </div>
+            <div class="timeline-content">
+              <div class="timeline-date" style="color:var(--c-muted)">Jun 7, 2026</div>
+              <div class="timeline-event">Final Countdown</div>
+              <div class="timeline-detail">Code freeze. Project submissions close at midnight.</div>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-dot-wrap">
+              <div class="timeline-dot"></div>
+            </div>
+            <div class="timeline-content">
+              <div class="timeline-date" style="color:var(--c-muted)">Jun 8, 2026</div>
+              <div class="timeline-event">Victory & Awards</div>
+              <div class="timeline-detail">Final presentations, judging, and prize ceremony.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRIZES -->
+  <section id="prizes">
+    <div class="section-inner">
+      <div class="reveal">
+        <div class="section-label">Prizes & Rewards</div>
+        <h2 class="section-title">Compete for<br><span class="gradient-text">glory.</span></h2>
+      </div>
+
+      <div class="prizes-hero reveal reveal-delay-1">
+        <div class="prizes-pool">₹3,00,000+</div>
+        <div class="prizes-label">Total Prize Pool</div>
+      </div>
+
+      <div class="prizes-grid reveal reveal-delay-2">
+        <div class="prize-card second">
+          <span class="prize-medal">🥈</span>
+          <div class="prize-place">Second Place</div>
+          <div class="prize-amount">₹75,000</div>
+          <div class="prize-perks">
+            <div class="prize-perk">Cash Prize</div>
+            <div class="prize-perk">Industry Internship</div>
+            <div class="prize-perk">Certificate of Excellence</div>
+            <div class="prize-perk">Swag Pack</div>
+          </div>
+        </div>
+
+        <div class="prize-card first">
+          <div class="prize-crown">CHAMPION</div>
+          <span class="prize-medal">🏆</span>
+          <div class="prize-place">Grand Winner</div>
+          <div class="prize-amount">₹1,50,000</div>
+          <div class="prize-perks">
+            <div class="prize-perk">Cash Prize</div>
+            <div class="prize-perk">Pre-placement Offers</div>
+            <div class="prize-perk">Trophy + Certificate</div>
+            <div class="prize-perk">Elite Mentorship</div>
+            <div class="prize-perk">Media Feature</div>
+          </div>
+        </div>
+
+        <div class="prize-card third">
+          <span class="prize-medal">🥉</span>
+          <div class="prize-place">Third Place</div>
+          <div class="prize-amount">₹50,000</div>
+          <div class="prize-perks">
+            <div class="prize-perk">Cash Prize</div>
+            <div class="prize-perk">Internship Priority</div>
+            <div class="prize-perk">Certificate</div>
+            <div class="prize-perk">Swag Pack</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="special-prizes reveal reveal-delay-3">
+        <div class="special-prize">
+          <div class="special-prize-icon">🛡</div>
+          <div>
+            <div class="special-prize-name">Best Security Hack</div>
+            <div class="special-prize-val">₹15,000</div>
+          </div>
+        </div>
+        <div class="special-prize">
+          <div class="special-prize-icon">🤖</div>
+          <div>
+            <div class="special-prize-name">Best AI Innovation</div>
+            <div class="special-prize-val">₹15,000</div>
+          </div>
+        </div>
+        <div class="special-prize">
+          <div class="special-prize-icon">⚡</div>
+          <div>
+            <div class="special-prize-name">Best Impact Solution</div>
+            <div class="special-prize-val">₹10,000</div>
+          </div>
+        </div>
+        <div class="special-prize">
+          <div class="special-prize-icon">🚀</div>
+          <div>
+            <div class="special-prize-name">Fastest Shipped</div>
+            <div class="special-prize-val">₹5,000</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SPONSORS -->
+  <section id="sponsors">
+    <div class="section-inner">
+      <div class="reveal">
+        <div class="section-label">Organizers & Partners</div>
+        <h2 class="section-title">Powered by<br><span class="gradient-text">the elite.</span></h2>
+        <p class="sponsors-note">Hackathon 2026 Doomsday Edition is jointly organized by CHARUSAT University and
+          Tribastion under a strategic
+          alliance. We are actively onboarding sponsors - reach out to join the fight.</p>
+      </div>
+
+      <div class="sponsor-tier reveal reveal-delay-1">
+        <div class="sponsor-tier-label">Organizers</div>
+        <div class="sponsor-logos">
+          <a href="https://www.charusat.ac.in/" target="_blank" rel="noopener" class="sponsor-logo platinum">
+            <img src="https://www.charusat.ac.in/_next/static/media/CHARUSAT_NEW.6cad095d.png" alt="CHARUSAT University"
+              class="sponsor-img charusat-logo" />
+          </a>
+
+          <a href="https://tribastion.com" target="_blank" rel="noopener" class="sponsor-logo platinum">
+            <img src="https://tribastion.com/wp-content/uploads/2025/10/sitelogo.svg" alt="Tribastion"
+              class="sponsor-img tribastion-logo" />
+          </a>
+        </div>
+      </div>
+
+      <div class="sponsor-tier reveal reveal-delay-2">
+        <div class="sponsor-tier-label">Strategic Partners</div>
+        <div class="sponsor-logos">
+          <a href="https://barracks.army/" target="_blank" rel="noopener" class="sponsor-logo">
+            <img src="./barracks.png" alt="Barracks" class="sponsor-img barracks-img" />
+          </a>
+          <div class="sponsor-placeholder">Your Brand Here</div>
+          <div class="sponsor-placeholder">Your Brand Here</div>
+        </div>
+      </div>
+
+      <div class="sponsor-tier reveal reveal-delay-3">
+        <div class="sponsor-tier-label">Alliance Members</div>
+        <div class="sponsor-logos">
+          <div class="sponsor-placeholder">Partner</div>
+          <div class="sponsor-placeholder">Partner</div>
+          <div class="sponsor-placeholder">Partner</div>
+          <div class="sponsor-placeholder">Partner</div>
+        </div>
+      </div>
+
+      <div class="reveal reveal-delay-4"
+        style="margin-top:3rem;padding:2rem;background:linear-gradient(135deg,rgba(220,20,60,0.08),rgba(255,215,0,0.05));border:1px solid var(--c-border);border-radius:16px">
+        <div
+          style="font-family:var(--font-display);font-weight:700;font-size:1.2rem;margin-bottom:0.5rem;text-transform:uppercase;letter-spacing:0.05em">
+          Join the Alliance</div>
+        <p style="font-size:0.88rem;color:var(--c-muted);line-height:1.7;max-width:600px">Reach 500+ talented
+          developers, designers, and engineers. Get exclusive branding rights, access to top talent for recruitment, and
+          real-time demos of solutions built for tomorrow.</p>
+        <a href="/cdn-cgi/l/email-protection#0b62656d644b7f7962696a787f62646525686466" class="contact-email"
+          style="margin-top:1.25rem">📧
+          <span class="__cf_email__"
+            data-cfemail="442d2a222b0430362d262537302d2b2a6a272b29">[email&#160;protected]</span></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq">
+    <div class="section-inner">
+      <div class="reveal">
+        <div class="section-label">Frequently Asked</div>
+        <h2 class="section-title">Got<br><span class="gradient-text">questions?</span></h2>
+      </div>
+
+      <div class="faq-list reveal reveal-delay-1">
+        <div class="faq-item open">
+          <div class="faq-q" onclick="toggleFaq(this)">
+            Who can join Hackathon 2026 Doomsday Edition?
+            <div class="faq-icon">+</div>
+          </div>
+          <div class="faq-a">
+            <p>Open to undergraduate and postgraduate students from any recognized university or college
+              across India. Early-career professionals (up to 2 years of experience) are also welcome. Teams of 2–4
+              members are recommended, though solo warriors are accepted.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFaq(this)">
+            Is there a registration fee?
+            <div class="faq-icon">+</div>
+          </div>
+          <div class="faq-a">
+            <p>There is a nominal registration fee to confirm your participation. Early-bird registrations (before May
+              1, 2026) receive a significant discount. The fee covers all meals, accommodation options, swag, and event
+              access for the full 48 hours.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFaq(this)">
+            Can I participate in multiple tracks?
+            <div class="faq-icon">+</div>
+          </div>
+          <div class="faq-a">
+            <p>Each team must submit to one primary track. However, projects that creatively span multiple
+              domains (e.g., AI + Cybersecurity) are absolutely encouraged and may be eligible for cross-track special
+              prizes as
+              determined by judges.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFaq(this)">
+            Will there be mentorship and resources available?
+            <div class="faq-icon">+</div>
+          </div>
+          <div class="faq-a">
+            <p>Yes! We will have 25+ mentors available throughout the event including Tribastion security researchers,
+              CHARUSAT faculty, and industry professionals. Cloud credits, API access, and development resources will be
+              provided to all registered teams upon confirmation.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFaq(this)">
+            What should I bring to the hackathon?
+            <div class="faq-icon">+</div>
+          </div>
+          <div class="faq-a">
+            <p>Bring your laptop, charger, valid college ID or government ID, and your most ambitious ideas.
+              Accommodation will be arranged for outstation participants. All hardware, common tools, and food will be
+              provided by the organizers. Projects must be started from scratch at the event.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFaq(this)">
+            How will projects be judged?
+            <div class="faq-icon">+</div>
+          </div>
+          <div class="faq-a">
+            <p>Projects are evaluated on four criteria: Technical Complexity (25%), Innovation & Originality (25%),
+              Real-World Impact (25%), and Presentation & Demo Quality (25%). All finalist teams will present to a panel
+              of industry judges on the final day.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFaq(this)">
+            When will registrations open?
+            <div class="faq-icon">+</div>
+          </div>
+          <div class="faq-a">
+            <p>Registrations open in April 2026. We strongly encourage signing up early as participation is capped to
+              ensure quality mentorship and resources. Drop your email via the contact section to get notified the
+              moment registrations go live.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer id="footer">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand-name">
+          HackAthon <span class="footer-year">2026</span>
+        </div>
+        <div class="footer-brand-desc">A 48-hour hackathon by CHARUSAT University and Tribastion. Pushing the frontiers
+          of cybersecurity, AI, and innovation in the age of Doomsday.</div>
+        <a href="/cdn-cgi/l/email-protection#3c55525a537c484e555e5d4f48555352125f5351" class="contact-email">📧 <span
+            class="__cf_email__"
+            data-cfemail="bed7d0d8d1fecaccd7dcdfcdcad7d1d090ddd1d3">[email&#160;protected]</span></a>
+        <div class="footer-social">
+          <a href="#" title="LinkedIn">in</a>
+          <a href="#" title="Twitter/X">𝕏</a>
+          <a href="#" title="Instagram">ig</a>
+          <a href="#" title="Discord">d</a>
+        </div>
+      </div>
+
+      <div class="footer-col">
+        <h4>Event</h4>
+        <ul>
+          <li><a href="#about">About</a></li>
+          <li><a href="#tracks">Tracks</a></li>
+          <li><a href="#timeline">Timeline</a></li>
+          <li><a href="#prizes">Prizes</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Organizers</h4>
+        <ul>
+          <li><a href="https://www.charusat.ac.in/" target="_blank">CHARUSAT University</a></li>
+          <li><a href="https://tribastion.com" target="_blank">Tribastion</a></li>
+          <li><a href="#sponsors">Become a Sponsor</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Resources</h4>
+        <ul>
+          <li><a href="#">Register Now</a></li>
+          <li><a href="#faq">FAQ</a></li>
+          <li><a href="#">Code of Conduct</a></li>
+          <li><a href="#">Judging Criteria</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div class="footer-copy">© 2026 Hackathon Doomsday Edition. <span>CHARUSAT × Tribastion.</span> All rights
+        reserved.</div>
+      <div class="footer-copy" style="display:flex;gap:1.5rem">
+        <a href="#" style="color:var(--c-faint);text-decoration:none">Privacy</a>
+        <a href="#" style="color:var(--c-faint);text-decoration:none">Terms</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="./scripts.js"></script>
+
+</body>
+
+</html>

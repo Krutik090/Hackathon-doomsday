@@ -43,17 +43,31 @@
 
   <!-- HERO -->
   <section id="hero">
+
+    <div id="stones-system">
+
+      <img src="./stones/Space.png" class="stone-img stone1">
+      <img src="./stones/Mind_Stone.png" class="stone-img stone2">
+      <img src="./stones/reality.png" class="stone-img stone3">
+      <img src="./stones/Powerstone.png" class="stone-img stone4">
+      <img src="./stones/Timestone.png" class="stone-img stone5">
+      <img src="./stones/Soul_Stone.png" class="stone-img stone6">
+
+    </div>
+
     <div class="grid-overlay" aria-hidden="true"></div>
     <canvas id="hero-canvas" aria-hidden="true"></canvas>
 
     <div class="hero-badge">
-      <span></span> CHARUSAT × Tribastion Technologies
+      <span></span> CHARUSAT � Tribastion Technologies
     </div>
+    <div class="hero-center">
 
-    <h1 class="hero-title">
-      <span class="line1">DoomsDay</span>
-      <span class="line2">HackAthon</span>
-    </h1>
+      <h1 class="hero-title">
+        <span class="line1">DoomsDay</span>
+        <span class="line2">HackAthon</span>
+      </h1>
+    </div>
 
     <p class="hero-sub">
       Where brilliant minds converge to build the future in the face of ultimate challenges - a 48-hour hackathon
@@ -65,12 +79,12 @@
         <span class="dot"></span>
         <span>June 2026</span>
       </div>
-      <div class="hero-meta-item" style="color:var(--c-faint)">·</div>
+      <div class="hero-meta-item" style="color:var(--c-faint)">�</div>
       <div class="hero-meta-item">
         <span class="dot" style="background:var(--c-crimson);box-shadow:0 0 6px var(--c-crimson)"></span>
         <span>CHARUSAT University, Anand</span>
       </div>
-      <div class="hero-meta-item" style="color:var(--c-faint)">·</div>
+      <div class="hero-meta-item" style="color:var(--c-faint)">�</div>
       <div class="hero-meta-item">
         <span class="dot" style="background:var(--c-gold);box-shadow:0 0 6px var(--c-gold)"></span>
         <span>48 Hours</span>
@@ -104,10 +118,10 @@
       </div>
     </div>
 
-    <div class="scroll-hint" onclick="document.getElementById('about').scrollIntoView({behavior:'smooth'})">
+    <!-- <div class="scroll-hint" onclick="document.getElementById('about').scrollIntoView({behavior:'smooth'})">
       <span>Scroll</span>
       <div class="scroll-line"></div>
-    </div>
+    </div> -->
   </section>
 
   <!-- ABOUT -->
@@ -172,27 +186,27 @@
               style="color:var(--c-text)">Tribastion</strong> - where heroes are forged through code.
           </p>
           <p class="section-body reveal reveal-delay-2" style="margin-top:1rem">
-            Over 48 intense hours, teams of 2–4 will face critical challenges in cybersecurity, AI, and emerging tech
+            Over 48 intense hours, teams of 24 will face critical challenges in cybersecurity, AI, and emerging tech
             - building solutions for tomorrow's threats, with mentorship from industry veterans.
           </p>
 
           <div class="about-features reveal reveal-delay-3">
             <div class="about-feature">
-              <div class="feature-icon">🛡</div>
+              <div class="feature-icon">=�</div>
               <div class="feature-text">
                 <h4>Mission-Critical Challenges</h4>
                 <p>Real-world problem statements curated by Tribastion's security researchers and CHARUSAT faculty.</p>
               </div>
             </div>
             <div class="about-feature">
-              <div class="feature-icon v">🤖</div>
+              <div class="feature-icon v">></div>
               <div class="feature-text">
                 <h4>Elite Mentorship</h4>
                 <p>Dedicated mentors from cybersecurity, AI, and product industries throughout the event.</p>
               </div>
             </div>
             <div class="about-feature">
-              <div class="feature-icon g">⚡</div>
+              <div class="feature-icon g">�</div>
               <div class="feature-text">
                 <h4>Assemble Your Team</h4>
                 <p>Undergraduate, postgraduate, and early-career professionals - all are welcome to join the fight.</p>
@@ -229,7 +243,7 @@
             </div>
           </div>
           <div class="about-card about-card-float1">
-            <div class="about-stat" style="font-size:1.8rem;color:var(--c-crimson)">₹3L+</div>
+            <div class="about-stat" style="font-size:1.8rem;color:var(--c-crimson)">�3L+</div>
             <div class="about-stat-label">Prize Pool</div>
           </div>
           <div class="about-card about-card-float2">
@@ -243,21 +257,52 @@
 
   <!-- TRACKS -->
   <section id="tracks">
-    <div class="section-inner">
+
+    <!--    Storm atmosphere layers    -->
+    <canvas id="thunder-bg" aria-hidden="true"></canvas>
+    <div class="thor-storm-overlay" aria-hidden="true"></div>
+    <div class="thunder-flash" id="thunder-flash" aria-hidden="true"></div>
+
+    <!-- Cloud texture strips that drift slowly -->
+    <div class="thor-cloud thor-cloud--1" aria-hidden="true"></div>
+    <div class="thor-cloud thor-cloud--2" aria-hidden="true"></div>
+
+    <div class="section-inner" style="position:relative; z-index:4;">
       <div class="reveal">
         <div class="section-label">Competition Tracks</div>
-        <h2 class="section-title">Choose your<br><span class="gradient-text">battleground.</span></h2>
+        <h2 class="section-title">
+          Choose your<br><span class="gradient-text">battleground.</span>
+        </h2>
+        <!-- Storm status bar -->
+        <div class="thor-storm-status">
+          <span class="thor-bolt-icon" aria-hidden="true">�</span>
+          <span class="thor-status-text">Storm Level: <span id="thor-storm-level">GATHERING</span></span>
+          <span class="thor-bolt-icon" aria-hidden="true">�</span>
+        </div>
       </div>
+
       <div class="tracks-grid" style="margin-top:3.5rem">
-        <div class="track-card reveal reveal-delay-1" style="--card-glow:linear-gradient(135deg,rgba(0,255,170,0.15),transparent);
---card-accent:rgba(0,255,170,0.7);
---icon-bg:rgba(0,255,170,0.15);
---icon-border:rgba(0,255,170,0.3)">
+
+        <!-- =� Cybersecurity -->
+        <div class="track-card cybersecurity reveal reveal-delay-1" style="--card-glow:linear-gradient(135deg,rgba(0,255,170,0.15),transparent);
+                  --card-accent:rgba(0,255,170,0.7);
+                  --icon-bg:rgba(0,255,170,0.15);
+                  --icon-border:rgba(0,255,170,0.3);
+                  --thor-card-color: 0,220,255;" data-track="cybersecurity">
+          <!-- Lightning strike anchor point -->
+          <div class="thor-strike-point" aria-hidden="true"></div>
+          <!-- Electric edge shimmer -->
+          <div class="thor-card-edge" aria-hidden="true"></div>
+          <!-- Ripple wave on hover -->
+          <div class="thor-ripple" aria-hidden="true"></div>
+
           <div class="track-num">01</div>
-          <div class="track-icon">🛡</div>
+          <div class="track-icon">=�</div>
           <div class="track-title">Cybersecurity</div>
-          <p class="track-desc">Build defensive tools, exploit detection systems, threat intelligence platforms, or
-            privacy-preserving technologies to defend the digital realm.</p>
+          <p class="track-desc">
+            Build defensive tools, exploit detection systems, threat intelligence platforms,
+            or privacy-preserving technologies to defend the digital realm.
+          </p>
           <div class="track-tags">
             <span class="track-tag"
               style="--tag-bg:rgba(220,20,60,0.1);--tag-color:var(--c-crimson);--tag-border:rgba(220,20,60,0.2)">CTF</span>
@@ -270,13 +315,23 @@
           </div>
         </div>
 
-        <div class="track-card reveal reveal-delay-2"
-          style="--card-glow:linear-gradient(135deg,rgba(255,215,0,0.1),transparent);--card-accent:rgba(255,215,0,0.6);--icon-bg:rgba(255,215,0,0.1);--icon-border:rgba(255,215,0,0.3)">
+        <!-- > AI / ML -->
+        <div class="track-card ai reveal reveal-delay-2" style="--card-glow:linear-gradient(135deg,rgba(255,215,0,0.1),transparent);
+                  --card-accent:rgba(255,215,0,0.6);
+                  --icon-bg:rgba(255,215,0,0.1);
+                  --icon-border:rgba(255,215,0,0.3);
+                  --thor-card-color: 255,220,60;" data-track="ai">
+          <div class="thor-strike-point" aria-hidden="true"></div>
+          <div class="thor-card-edge" aria-hidden="true"></div>
+          <div class="thor-ripple" aria-hidden="true"></div>
+
           <div class="track-num">02</div>
-          <div class="track-icon" style="background:rgba(255,215,0,0.1);border-color:rgba(255,215,0,0.3)">🤖</div>
+          <div class="track-icon">></div>
           <div class="track-title">AI / Machine Learning</div>
-          <p class="track-desc">Harness the power of intelligent systems - from NLP and computer vision to generative
-            AI and autonomous decision-making for humanity's survival.</p>
+          <p class="track-desc">
+            Harness intelligent systemsfrom NLP and computer vision to generative AI
+            and autonomous decision-making for humanity's survival.
+          </p>
           <div class="track-tags">
             <span class="track-tag"
               style="--tag-bg:rgba(255,215,0,0.08);--tag-color:var(--c-gold);--tag-border:rgba(255,215,0,0.2)">LLMs</span>
@@ -288,13 +343,23 @@
           </div>
         </div>
 
-        <div class="track-card reveal reveal-delay-3"
-          style="--card-glow:linear-gradient(135deg,rgba(218,165,32,0.1),transparent);--card-accent:rgba(218,165,32,0.6);--icon-bg:rgba(218,165,32,0.1);--icon-border:rgba(218,165,32,0.3)">
+        <!-- < Web / SaaS -->
+        <div class="track-card web reveal reveal-delay-3" style="--card-glow:linear-gradient(135deg,rgba(218,165,32,0.1),transparent);
+                  --card-accent:rgba(218,165,32,0.6);
+                  --icon-bg:rgba(218,165,32,0.1);
+                  --icon-border:rgba(218,165,32,0.3);
+                  --thor-card-color: 218,165,32;" data-track="web">
+          <div class="thor-strike-point" aria-hidden="true"></div>
+          <div class="thor-card-edge" aria-hidden="true"></div>
+          <div class="thor-ripple" aria-hidden="true"></div>
+
           <div class="track-num">03</div>
-          <div class="track-icon" style="background:rgba(218,165,32,0.1);border-color:rgba(218,165,32,0.3)">🌐</div>
+          <div class="track-icon"><</div>
           <div class="track-title">Web / SaaS</div>
-          <p class="track-desc">Design and ship production-grade web applications, developer tools, or B2B SaaS products
-            with real utility in the battle ahead.</p>
+          <p class="track-desc">
+            Design and ship production-grade web applications, developer tools,
+            or B2B SaaS products with real utility in the battle ahead.
+          </p>
           <div class="track-tags">
             <span class="track-tag"
               style="--tag-bg:rgba(218,165,32,0.08);--tag-color:var(--c-brass);--tag-border:rgba(218,165,32,0.2)">Full
@@ -306,13 +371,23 @@
           </div>
         </div>
 
-        <div class="track-card reveal reveal-delay-4"
-          style="--card-glow:linear-gradient(135deg,rgba(139,0,0,0.1),transparent);--card-accent:rgba(139,0,0,0.6);--icon-bg:rgba(139,0,0,0.15);--icon-border:rgba(139,0,0,0.3)">
+        <!-- � Open Innovation -->
+        <div class="track-card innovation reveal reveal-delay-4" style="--card-glow:linear-gradient(135deg,rgba(139,0,0,0.1),transparent);
+                  --card-accent:rgba(139,0,0,0.6);
+                  --icon-bg:rgba(139,0,0,0.15);
+                  --icon-border:rgba(139,0,0,0.3);
+                  --thor-card-color: 220,80,20;" data-track="innovation">
+          <div class="thor-strike-point" aria-hidden="true"></div>
+          <div class="thor-card-edge" aria-hidden="true"></div>
+          <div class="thor-ripple" aria-hidden="true"></div>
+
           <div class="track-num">04</div>
-          <div class="track-icon" style="background:rgba(139,0,0,0.15);border-color:rgba(139,0,0,0.3)">⚔️</div>
+          <div class="track-icon">�</div>
           <div class="track-title">Open Innovation</div>
-          <p class="track-desc">No constraints - your vision, your rules. Build anything that creates meaningful impact
-            in our darkest hour: climate tech, healthcare, EdTech, fintech, or beyond.</p>
+          <p class="track-desc">
+            No constraintsyour vision, your rules. Build anything that creates meaningful
+            impact in our darkest hour.
+          </p>
           <div class="track-tags">
             <span class="track-tag"
               style="--tag-bg:rgba(139,0,0,0.1);--tag-color:var(--c-doom);--tag-border:rgba(139,0,0,0.2)">Impact</span>
@@ -323,8 +398,9 @@
               style="--tag-bg:rgba(139,0,0,0.1);--tag-color:var(--c-doom);--tag-border:rgba(139,0,0,0.2)">Moonshots</span>
           </div>
         </div>
-      </div>
-    </div>
+
+      </div><!-- /.tracks-grid -->
+    </div><!-- /.section-inner -->
   </section>
 
   <!-- TIMELINE -->
@@ -335,86 +411,198 @@
         <h2 class="section-title">Mark your<br><span class="gradient-text">calendar.</span></h2>
       </div>
 
-      <div class="timeline-wrapper reveal" style="margin-top:4rem">
-        <div class="timeline-line">
-          <div class="timeline-line-fill" id="timeline-fill"></div>
-        </div>
-        <div class="timeline-items">
-          <div class="timeline-item active">
-            <div class="timeline-dot-wrap">
-              <div class="timeline-dot-ring"></div>
-              <div class="timeline-dot"></div>
+      <!-- SACRED TIMELINE (Loki-style wavy) -->
+      <div class="sacred-timeline reveal" style="margin-top:4rem">
+
+        <!-- SVG wave path -->
+        <svg class="sacred-wave-svg" viewBox="0 0 1000 220" preserveAspectRatio="none"
+          xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="waveGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stop-color="#8b0000" stop-opacity="0.4" />
+              <stop offset="30%" stop-color="#dc143c" stop-opacity="1" />
+              <stop offset="60%" stop-color="#ffd700" stop-opacity="1" />
+              <stop offset="100%" stop-color="#8b0000" stop-opacity="0.4" />
+            </linearGradient>
+            <linearGradient id="waveGradFill" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stop-color="#dc143c" stop-opacity="0" />
+              <stop offset="40%" stop-color="#dc143c" stop-opacity="1" />
+              <stop offset="100%" stop-color="#8b0000" stop-opacity="0" />
+            </linearGradient>
+            <filter id="waveGlow">
+              <feGaussianBlur stdDeviation="3" result="blur" />
+              <feMerge>
+                <feMergeNode in="blur" />
+                <feMergeNode in="SourceGraphic" />
+              </feMerge>
+            </filter>
+            <filter id="waveGlowStrong">
+              <feGaussianBlur stdDeviation="6" result="blur" />
+              <feMerge>
+                <feMergeNode in="blur" />
+                <feMergeNode in="SourceGraphic" />
+              </feMerge>
+            </filter>
+            <!-- animated dash -->
+            <mask id="waveMask">
+              <rect id="wave-mask-rect" x="0" y="0" width="0" height="220" fill="white" />
+            </mask>
+          </defs>
+
+          <!-- Glow shadow path (thicker, blurred) -->
+          <path class="sacred-wave-glow"
+            d="M0,110 C100,110 150,50 250,50 C350,50 400,170 500,170 C600,170 650,50 750,50 C850,50 900,170 1000,170"
+            fill="none" stroke="url(#waveGrad)" stroke-width="8" filter="url(#waveGlowStrong)" opacity="0.5" />
+
+          <!-- Main wave path (sharp, crisp) -->
+          <path class="sacred-wave-path" id="sacred-wave-path"
+            d="M0,110 C100,110 150,50 250,50 C350,50 400,170 500,170 C600,170 650,50 750,50 C850,50 900,170 1000,170"
+            fill="none" stroke="url(#waveGrad)" stroke-width="2.5" filter="url(#waveGlow)" mask="url(#waveMask)" />
+
+          <!-- Animated fill duplicate for the reveal effect -->
+          <path class="sacred-wave-path-bg"
+            d="M0,110 C100,110 150,50 250,50 C350,50 400,170 500,170 C600,170 650,50 750,50 C850,50 900,170 1000,170"
+            fill="none" stroke="rgba(255,255,255,0.04)" stroke-width="2.5" />
+        </svg>
+
+        <!-- 5 event nodes  positioned along the wave -->
+        <!-- Wave Y positions at each X: x=0�110, x=250�50, x=500�170, x=750�50, x=1000�170 -->
+        <!-- As % of SVG 1000�220 viewBox: -->
+        <!--  node1: 0%  x, y=110/220=50%  � above -->
+        <!--  node2: 25% x, y=50/220=22.7% � above -->
+        <!--  node3: 50% x, y=170/220=77%  � below -->
+        <!--  node4: 75% x, y=50/220=22.7% � above -->
+        <!--  node5: 100% x, y=170/220=77% � below -->
+
+        <div class="sacred-nodes">
+
+          <!-- Node 1  Apr 2026, yH50% � label ABOVE -->
+          <div class="sacred-node active" style="--nx:0%;--ny:50%">
+            <div class="sacred-node-line above"></div>
+            <div class="sacred-node-dot-wrap">
+              <div class="sacred-node-ring"></div>
+              <div class="sacred-node-dot"></div>
             </div>
-            <div class="timeline-content">
-              <div class="timeline-date">Apr 2026</div>
-              <div class="timeline-event">Registrations Open</div>
-              <div class="timeline-detail">Team and solo sign-ups begin. Limited seats available.</div>
+            <div class="sacred-node-content above">
+              <div class="sacred-node-date active-date">Apr 2026</div>
+              <div class="sacred-node-event">Registrations Open</div>
+              <div class="sacred-node-detail">Team and solo sign-ups begin. Limited seats available.</div>
             </div>
           </div>
-          <div class="timeline-item active">
-            <div class="timeline-dot-wrap">
-              <div class="timeline-dot-ring"></div>
-              <div class="timeline-dot"></div>
+
+          <!-- Node 2  May 15, yH22.7% � label BELOW -->
+          <div class="sacred-node active" style="--nx:25%;--ny:22.7%">
+            <div class="sacred-node-content below">
+              <div class="sacred-node-date active-date">May 15, 2026</div>
+              <div class="sacred-node-event">Team Confirmation</div>
+              <div class="sacred-node-detail">Rosters locked. Problem statements revealed.</div>
             </div>
-            <div class="timeline-content">
-              <div class="timeline-date">May 15, 2026</div>
-              <div class="timeline-event">Team Confirmation</div>
-              <div class="timeline-detail">Final team rosters locked. Problem statements revealed.</div>
+            <div class="sacred-node-dot-wrap">
+              <div class="sacred-node-ring"></div>
+              <div class="sacred-node-dot"></div>
+            </div>
+            <div class="sacred-node-line below"></div>
+          </div>
+
+          <!-- Node 3  Jun 6, yH77% � label ABOVE -->
+          <div class="sacred-node" style="--nx:50%;--ny:77%">
+            <div class="sacred-node-line above"></div>
+            <div class="sacred-node-dot-wrap">
+              <div class="sacred-node-dot"></div>
+            </div>
+            <div class="sacred-node-content above">
+              <div class="sacred-node-date">Jun 6, 2026</div>
+              <div class="sacred-node-event">Doomsday Begins</div>
+              <div class="sacred-node-detail">48-hour clock starts. Opening at CHARUSAT.</div>
             </div>
           </div>
-          <div class="timeline-item">
-            <div class="timeline-dot-wrap">
-              <div class="timeline-dot"></div>
+
+          <!-- Node 4  Jun 7, yH22.7% � label BELOW -->
+          <div class="sacred-node" style="--nx:75%;--ny:22.7%">
+            <div class="sacred-node-content below">
+              <div class="sacred-node-date">Jun 7, 2026</div>
+              <div class="sacred-node-event">Final Countdown</div>
+              <div class="sacred-node-detail">Code freeze. Submissions close at midnight.</div>
             </div>
-            <div class="timeline-content">
-              <div class="timeline-date" style="color:var(--c-muted)">Jun 6, 2026</div>
-              <div class="timeline-event">Doomsday Begins</div>
-              <div class="timeline-detail">48-hour clock starts. Opening ceremony at CHARUSAT.</div>
+            <div class="sacred-node-dot-wrap">
+              <div class="sacred-node-dot"></div>
+            </div>
+            <div class="sacred-node-line below"></div>
+          </div>
+
+          <!-- Node 5  Jun 8, yH77% � label ABOVE -->
+          <div class="sacred-node" style="--nx:100%;--ny:77%">
+            <div class="sacred-node-line above"></div>
+            <div class="sacred-node-dot-wrap">
+              <div class="sacred-node-dot"></div>
+            </div>
+            <div class="sacred-node-content above">
+              <div class="sacred-node-date">Jun 8, 2026</div>
+              <div class="sacred-node-event">Victory & Awards</div>
+              <div class="sacred-node-detail">Presentations, judging, and prize ceremony.</div>
             </div>
           </div>
-          <div class="timeline-item">
-            <div class="timeline-dot-wrap">
-              <div class="timeline-dot"></div>
-            </div>
-            <div class="timeline-content">
-              <div class="timeline-date" style="color:var(--c-muted)">Jun 7, 2026</div>
-              <div class="timeline-event">Final Countdown</div>
-              <div class="timeline-detail">Code freeze. Project submissions close at midnight.</div>
-            </div>
-          </div>
-          <div class="timeline-item">
-            <div class="timeline-dot-wrap">
-              <div class="timeline-dot"></div>
-            </div>
-            <div class="timeline-content">
-              <div class="timeline-date" style="color:var(--c-muted)">Jun 8, 2026</div>
-              <div class="timeline-event">Victory & Awards</div>
-              <div class="timeline-detail">Final presentations, judging, and prize ceremony.</div>
-            </div>
-          </div>
-        </div>
+
+        </div><!-- /.sacred-nodes -->
+
+        <!-- TVA scan line -->
+        <div class="sacred-scan-line" id="sacred-scan"></div>
+
       </div>
     </div>
   </section>
 
   <!-- PRIZES -->
   <section id="prizes">
-    <div class="section-inner">
+
+    <!-- Arc Reactor background assembly -->
+    <div class="arc-reactor-bg" aria-hidden="true">
+
+      <!-- The reactor image itself -->
+      <img src="./Card-images/reactor.png" class="arc-reactor-img" alt="" />
+
+      <!-- Pulsing light rings that radiate outward -->
+      <div class="arc-ring arc-ring-1"></div>
+      <div class="arc-ring arc-ring-2"></div>
+      <div class="arc-ring arc-ring-3"></div>
+      <div class="arc-ring arc-ring-4"></div>
+
+      <!-- Beam rays that shoot out from center -->
+      <div class="arc-rays">
+        <div class="arc-ray" style="--angle:0deg"></div>
+        <div class="arc-ray" style="--angle:45deg"></div>
+        <div class="arc-ray" style="--angle:90deg"></div>
+        <div class="arc-ray" style="--angle:135deg"></div>
+        <div class="arc-ray" style="--angle:180deg"></div>
+        <div class="arc-ray" style="--angle:225deg"></div>
+        <div class="arc-ray" style="--angle:270deg"></div>
+        <div class="arc-ray" style="--angle:315deg"></div>
+      </div>
+
+      <!-- Ambient floor glow (bottom spill-light effect) -->
+      <div class="arc-floor-glow"></div>
+
+      <!-- Scan lines overlay for holographic feel -->
+      <div class="arc-scanlines"></div>
+
+    </div>
+
+    <div class="section-inner" style="position:relative;z-index:2">
       <div class="reveal">
         <div class="section-label">Prizes & Rewards</div>
         <h2 class="section-title">Compete for<br><span class="gradient-text">glory.</span></h2>
       </div>
 
       <div class="prizes-hero reveal reveal-delay-1">
-        <div class="prizes-pool">₹3,00,000+</div>
+        <div class="prizes-pool">�3,00,000+</div>
         <div class="prizes-label">Total Prize Pool</div>
       </div>
 
       <div class="prizes-grid reveal reveal-delay-2">
         <div class="prize-card second">
-          <span class="prize-medal">🥈</span>
+          <span class="prize-medal">>H</span>
           <div class="prize-place">Second Place</div>
-          <div class="prize-amount">₹75,000</div>
+          <div class="prize-amount">�75,000</div>
           <div class="prize-perks">
             <div class="prize-perk">Cash Prize</div>
             <div class="prize-perk">Industry Internship</div>
@@ -425,9 +613,9 @@
 
         <div class="prize-card first">
           <div class="prize-crown">CHAMPION</div>
-          <span class="prize-medal">🏆</span>
+          <span class="prize-medal"><�</span>
           <div class="prize-place">Grand Winner</div>
-          <div class="prize-amount">₹1,50,000</div>
+          <div class="prize-amount">�1,50,000</div>
           <div class="prize-perks">
             <div class="prize-perk">Cash Prize</div>
             <div class="prize-perk">Pre-placement Offers</div>
@@ -438,9 +626,9 @@
         </div>
 
         <div class="prize-card third">
-          <span class="prize-medal">🥉</span>
+          <span class="prize-medal">>I</span>
           <div class="prize-place">Third Place</div>
-          <div class="prize-amount">₹50,000</div>
+          <div class="prize-amount">�50,000</div>
           <div class="prize-perks">
             <div class="prize-perk">Cash Prize</div>
             <div class="prize-perk">Internship Priority</div>
@@ -452,31 +640,31 @@
 
       <div class="special-prizes reveal reveal-delay-3">
         <div class="special-prize">
-          <div class="special-prize-icon">🛡</div>
+          <div class="special-prize-icon">=�</div>
           <div>
             <div class="special-prize-name">Best Security Hack</div>
-            <div class="special-prize-val">₹15,000</div>
+            <div class="special-prize-val">�15,000</div>
           </div>
         </div>
         <div class="special-prize">
-          <div class="special-prize-icon">🤖</div>
+          <div class="special-prize-icon">></div>
           <div>
             <div class="special-prize-name">Best AI Innovation</div>
-            <div class="special-prize-val">₹15,000</div>
+            <div class="special-prize-val">�15,000</div>
           </div>
         </div>
         <div class="special-prize">
-          <div class="special-prize-icon">⚡</div>
+          <div class="special-prize-icon">�</div>
           <div>
             <div class="special-prize-name">Best Impact Solution</div>
-            <div class="special-prize-val">₹10,000</div>
+            <div class="special-prize-val">�10,000</div>
           </div>
         </div>
         <div class="special-prize">
-          <div class="special-prize-icon">🚀</div>
+          <div class="special-prize-icon">=�</div>
           <div>
             <div class="special-prize-name">Fastest Shipped</div>
-            <div class="special-prize-val">₹5,000</div>
+            <div class="special-prize-val">�5,000</div>
           </div>
         </div>
       </div>
@@ -485,7 +673,31 @@
 
   <!-- SPONSORS -->
   <section id="sponsors">
-    <div class="section-inner">
+
+    <!-- Dr Strange Sling Ring Magic Circle background -->
+    <div class="strange-bg" aria-hidden="true">
+
+      <!-- The mandala / magic circle image  two counter-rotating layers -->
+      <img src="./Card-images/dr-strange.png" class="strange-mandala strange-outer" alt="" />
+      <!-- <img src="./1775797117417_dr-strange.png" class="strange-mandala strange-inner" alt="" /> -->
+
+      <!-- Spark particles that orbit the circle like sling-ring embers -->
+      <div class="strange-sparks" id="strange-sparks"></div>
+
+      <!-- Pulsing orange glow rings -->
+      <div class="strange-ring sr-1"></div>
+      <div class="strange-ring sr-2"></div>
+      <div class="strange-ring sr-3"></div>
+
+      <!-- Ambient orange light spill beneath -->
+      <div class="strange-glow-pool"></div>
+
+      <!-- Holographic rune-scan overlay -->
+      <div class="strange-runes-scan"></div>
+
+    </div>
+
+    <div class="section-inner" style="position:relative;z-index:2">
       <div class="reveal">
         <div class="section-label">Organizers & Partners</div>
         <h2 class="section-title">Powered by<br><span class="gradient-text">the elite.</span></h2>
@@ -501,7 +713,6 @@
             <img src="https://www.charusat.ac.in/_next/static/media/CHARUSAT_NEW.6cad095d.png" alt="CHARUSAT University"
               class="sponsor-img charusat-logo" />
           </a>
-
           <a href="https://tribastion.com" target="_blank" rel="noopener" class="sponsor-logo platinum">
             <img src="https://tribastion.com/wp-content/uploads/2025/10/sitelogo.svg" alt="Tribastion"
               class="sponsor-img tribastion-logo" />
@@ -539,7 +750,7 @@
           developers, designers, and engineers. Get exclusive branding rights, access to top talent for recruitment, and
           real-time demos of solutions built for tomorrow.</p>
         <a href="/cdn-cgi/l/email-protection#0b62656d644b7f7962696a787f62646525686466" class="contact-email"
-          style="margin-top:1.25rem">📧
+          style="margin-top:1.25rem">=�
           <span class="__cf_email__"
             data-cfemail="442d2a222b0430362d262537302d2b2a6a272b29">[email&#160;protected]</span></a>
       </div>
@@ -548,101 +759,283 @@
 
   <!-- FAQ -->
   <section id="faq">
-    <div class="section-inner">
+
+    <!--    Mystic background layer    -->
+    <div class="faq-magic-bg" aria-hidden="true">
+
+      <!-- SVG mandala drawn with pure CSS geometry  no external image needed -->
+      <svg class="faq-mandala faq-mandala--outer" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <radialGradient id="faqMandalaGrad" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="#00ffa6" stop-opacity="0.18" />
+            <stop offset="40%" stop-color="#39ff14" stop-opacity="0.08" />
+            <stop offset="100%" stop-color="#00ffa6" stop-opacity="0" />
+          </radialGradient>
+        </defs>
+
+        <!-- Outer rings -->
+        <circle cx="200" cy="200" r="190" fill="none" stroke="#00ffa6" stroke-width="0.6" opacity="0.25" />
+        <circle cx="200" cy="200" r="175" fill="none" stroke="#39ff14" stroke-width="0.4" opacity="0.18" />
+        <circle cx="200" cy="200" r="155" fill="none" stroke="#00ffa6" stroke-width="0.6" opacity="0.20" />
+
+        <!-- 12-point rune tick marks on outer ring -->
+        <g stroke="#00ffa6" stroke-width="1" opacity="0.35">
+          <line x1="200" y1="12" x2="200" y2="28" transform="rotate(0   200 200)" />
+          <line x1="200" y1="12" x2="200" y2="28" transform="rotate(30  200 200)" />
+          <line x1="200" y1="12" x2="200" y2="28" transform="rotate(60  200 200)" />
+          <line x1="200" y1="12" x2="200" y2="28" transform="rotate(90  200 200)" />
+          <line x1="200" y1="12" x2="200" y2="28" transform="rotate(120 200 200)" />
+          <line x1="200" y1="12" x2="200" y2="28" transform="rotate(150 200 200)" />
+          <line x1="200" y1="12" x2="200" y2="28" transform="rotate(180 200 200)" />
+          <line x1="200" y1="12" x2="200" y2="28" transform="rotate(210 200 200)" />
+          <line x1="200" y1="12" x2="200" y2="28" transform="rotate(240 200 200)" />
+          <line x1="200" y1="12" x2="200" y2="28" transform="rotate(270 200 200)" />
+          <line x1="200" y1="12" x2="200" y2="28" transform="rotate(300 200 200)" />
+          <line x1="200" y1="12" x2="200" y2="28" transform="rotate(330 200 200)" />
+        </g>
+
+        <!-- 8-point star polygon -->
+        <polygon points="200,48 214,186 352,200 214,214 200,352 186,214 48,200 186,186" fill="none" stroke="#00ffa6"
+          stroke-width="0.7" opacity="0.20" />
+
+        <!-- Inner octagon -->
+        <polygon points="200,90 282,118 310,200 282,282 200,310 118,282 90,200 118,118" fill="none" stroke="#39ff14"
+          stroke-width="0.6" opacity="0.18" />
+
+        <!-- Mid rings -->
+        <circle cx="200" cy="200" r="110" fill="none" stroke="#00ffa6" stroke-width="0.5" opacity="0.15" />
+        <circle cx="200" cy="200" r="80" fill="none" stroke="#39ff14" stroke-width="0.8" opacity="0.20" />
+        <circle cx="200" cy="200" r="55" fill="none" stroke="#00ffa6" stroke-width="0.5" opacity="0.18" />
+        <circle cx="200" cy="200" r="32" fill="none" stroke="#39ff14" stroke-width="1.0" opacity="0.22" />
+
+        <!-- Inner 6-point star -->
+        <polygon points="200,130 218,182 272,182 228,214 246,268 200,236 154,268 172,214 128,182 182,182" fill="none"
+          stroke="#00ffa6" stroke-width="0.7" opacity="0.18" />
+
+        <!-- Radial spokes -->
+        <g stroke="#00ffa6" stroke-width="0.5" opacity="0.12">
+          <line x1="200" y1="32" x2="200" y2="368" transform="rotate(0   200 200)" />
+          <line x1="200" y1="32" x2="200" y2="368" transform="rotate(22.5 200 200)" />
+          <line x1="200" y1="32" x2="200" y2="368" transform="rotate(45  200 200)" />
+          <line x1="200" y1="32" x2="200" y2="368" transform="rotate(67.5 200 200)" />
+        </g>
+
+        <!-- Soft glow fill -->
+        <circle cx="200" cy="200" r="188" fill="url(#faqMandalaGrad)" />
+      </svg>
+
+      <!-- Inner mandala counter-rotates -->
+      <svg class="faq-mandala faq-mandala--inner" viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="150" cy="150" r="140" fill="none" stroke="#39ff14" stroke-width="0.6" opacity="0.14" />
+        <circle cx="150" cy="150" r="115" fill="none" stroke="#00ffa6" stroke-width="0.5" opacity="0.18" />
+        <circle cx="150" cy="150" r="88" fill="none" stroke="#39ff14" stroke-width="0.8" opacity="0.20" />
+        <polygon points="150,30 168,132 270,150 168,168 150,270 132,168 30,150 132,132" fill="none" stroke="#00ffa6"
+          stroke-width="0.7" opacity="0.22" />
+        <polygon points="150,72 163,137 228,150 163,163 150,228 137,163 72,150 137,137" fill="none" stroke="#39ff14"
+          stroke-width="0.6" opacity="0.18" />
+        <!-- Dot markers -->
+        <g fill="#00ffa6" opacity="0.30">
+          <circle cx="150" cy="10" r="2" transform="rotate(0   150 150)" />
+          <circle cx="150" cy="10" r="2" transform="rotate(45  150 150)" />
+          <circle cx="150" cy="10" r="2" transform="rotate(90  150 150)" />
+          <circle cx="150" cy="10" r="2" transform="rotate(135 150 150)" />
+          <circle cx="150" cy="10" r="2" transform="rotate(180 150 150)" />
+          <circle cx="150" cy="10" r="2" transform="rotate(225 150 150)" />
+          <circle cx="150" cy="10" r="2" transform="rotate(270 150 150)" />
+          <circle cx="150" cy="10" r="2" transform="rotate(315 150 150)" />
+        </g>
+      </svg>
+
+      <!-- Floating ember sparks (populated by JS) -->
+      <div class="faq-sparks" id="faq-sparks"></div>
+
+      <!-- Ambient green glow pool -->
+      <div class="faq-glow-pool"></div>
+
+    </div>
+
+    <!--    Section content    -->
+    <div class="section-inner" style="position:relative; z-index:2;">
       <div class="reveal">
         <div class="section-label">Frequently Asked</div>
         <h2 class="section-title">Got<br><span class="gradient-text">questions?</span></h2>
+
+        <!-- Mystic sub-label -->
+        <p class="faq-portal-label">
+          <span class="faq-portal-dot"></span>
+          Mystic Knowledge Portal  Open a Seal to Reveal
+        </p>
       </div>
 
-      <div class="faq-list reveal reveal-delay-1">
-        <div class="faq-item open">
-          <div class="faq-q" onclick="toggleFaq(this)">
-            Who can join Hackathon 2026 Doomsday Edition?
-            <div class="faq-icon">+</div>
+      <div class="faq-portal-list reveal reveal-delay-1">
+
+        <!-- Q1 -->
+        <div class="faq-portal-item" data-index="0">
+          <div class="faq-portal-q" role="button" tabindex="0" aria-expanded="false" onclick="togglePortal(this)">
+            <span class="faq-portal-qnum">01</span>
+            <span class="faq-portal-qtext">Who can join Hackathon 2026 Doomsday Edition?</span>
+            <span class="faq-portal-icon" aria-hidden="true">
+              <svg class="faq-icon-svg" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="12" cy="12" r="10.5" stroke="currentColor" stroke-width="1" />
+                <line x1="12" y1="7" x2="12" y2="17" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                  class="faq-icon-v" />
+                <line x1="7" y1="12" x2="17" y2="12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+              </svg>
+            </span>
           </div>
-          <div class="faq-a">
-            <p>Open to undergraduate and postgraduate students from any recognized university or college
-              across India. Early-career professionals (up to 2 years of experience) are also welcome. Teams of 2–4
-              members are recommended, though solo warriors are accepted.</p>
+          <div class="faq-portal-a" role="region">
+            <div class="faq-portal-a-inner">
+              <p>Open to undergraduate and postgraduate students from any recognized university or college
+                across India. Early-career professionals (up to 2 years of experience) are also welcome. Teams of 24
+                members are recommended, though solo warriors are accepted.</p>
+            </div>
           </div>
         </div>
 
-        <div class="faq-item">
-          <div class="faq-q" onclick="toggleFaq(this)">
-            Is there a registration fee?
-            <div class="faq-icon">+</div>
+        <!-- Q2 -->
+        <div class="faq-portal-item" data-index="1">
+          <div class="faq-portal-q" role="button" tabindex="0" aria-expanded="false" onclick="togglePortal(this)">
+            <span class="faq-portal-qnum">02</span>
+            <span class="faq-portal-qtext">Is there a registration fee?</span>
+            <span class="faq-portal-icon" aria-hidden="true">
+              <svg class="faq-icon-svg" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="12" cy="12" r="10.5" stroke="currentColor" stroke-width="1" />
+                <line x1="12" y1="7" x2="12" y2="17" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                  class="faq-icon-v" />
+                <line x1="7" y1="12" x2="17" y2="12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+              </svg>
+            </span>
           </div>
-          <div class="faq-a">
-            <p>There is a nominal registration fee to confirm your participation. Early-bird registrations (before May
-              1, 2026) receive a significant discount. The fee covers all meals, accommodation options, swag, and event
-              access for the full 48 hours.</p>
-          </div>
-        </div>
-
-        <div class="faq-item">
-          <div class="faq-q" onclick="toggleFaq(this)">
-            Can I participate in multiple tracks?
-            <div class="faq-icon">+</div>
-          </div>
-          <div class="faq-a">
-            <p>Each team must submit to one primary track. However, projects that creatively span multiple
-              domains (e.g., AI + Cybersecurity) are absolutely encouraged and may be eligible for cross-track special
-              prizes as
-              determined by judges.</p>
-          </div>
-        </div>
-
-        <div class="faq-item">
-          <div class="faq-q" onclick="toggleFaq(this)">
-            Will there be mentorship and resources available?
-            <div class="faq-icon">+</div>
-          </div>
-          <div class="faq-a">
-            <p>Yes! We will have 25+ mentors available throughout the event including Tribastion security researchers,
-              CHARUSAT faculty, and industry professionals. Cloud credits, API access, and development resources will be
-              provided to all registered teams upon confirmation.</p>
+          <div class="faq-portal-a" role="region">
+            <div class="faq-portal-a-inner">
+              <p>There is a nominal registration fee to confirm your participation. Early-bird registrations (before May
+                1, 2026) receive a significant discount. The fee covers all meals, accommodation options, swag, and
+                event
+                access for the full 48 hours.</p>
+            </div>
           </div>
         </div>
 
-        <div class="faq-item">
-          <div class="faq-q" onclick="toggleFaq(this)">
-            What should I bring to the hackathon?
-            <div class="faq-icon">+</div>
+        <!-- Q3 -->
+        <div class="faq-portal-item" data-index="2">
+          <div class="faq-portal-q" role="button" tabindex="0" aria-expanded="false" onclick="togglePortal(this)">
+            <span class="faq-portal-qnum">03</span>
+            <span class="faq-portal-qtext">Can I participate in multiple tracks?</span>
+            <span class="faq-portal-icon" aria-hidden="true">
+              <svg class="faq-icon-svg" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="12" cy="12" r="10.5" stroke="currentColor" stroke-width="1" />
+                <line x1="12" y1="7" x2="12" y2="17" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                  class="faq-icon-v" />
+                <line x1="7" y1="12" x2="17" y2="12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+              </svg>
+            </span>
           </div>
-          <div class="faq-a">
-            <p>Bring your laptop, charger, valid college ID or government ID, and your most ambitious ideas.
-              Accommodation will be arranged for outstation participants. All hardware, common tools, and food will be
-              provided by the organizers. Projects must be started from scratch at the event.</p>
+          <div class="faq-portal-a" role="region">
+            <div class="faq-portal-a-inner">
+              <p>Each team must submit to one primary track. However, projects that creatively span multiple
+                domains (e.g., AI + Cybersecurity) are absolutely encouraged and may be eligible for cross-track special
+                prizes as determined by judges.</p>
+            </div>
           </div>
         </div>
 
-        <div class="faq-item">
-          <div class="faq-q" onclick="toggleFaq(this)">
-            How will projects be judged?
-            <div class="faq-icon">+</div>
+        <!-- Q4 -->
+        <div class="faq-portal-item" data-index="3">
+          <div class="faq-portal-q" role="button" tabindex="0" aria-expanded="false" onclick="togglePortal(this)">
+            <span class="faq-portal-qnum">04</span>
+            <span class="faq-portal-qtext">Will there be mentorship and resources available?</span>
+            <span class="faq-portal-icon" aria-hidden="true">
+              <svg class="faq-icon-svg" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="12" cy="12" r="10.5" stroke="currentColor" stroke-width="1" />
+                <line x1="12" y1="7" x2="12" y2="17" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                  class="faq-icon-v" />
+                <line x1="7" y1="12" x2="17" y2="12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+              </svg>
+            </span>
           </div>
-          <div class="faq-a">
-            <p>Projects are evaluated on four criteria: Technical Complexity (25%), Innovation & Originality (25%),
-              Real-World Impact (25%), and Presentation & Demo Quality (25%). All finalist teams will present to a panel
-              of industry judges on the final day.</p>
+          <div class="faq-portal-a" role="region">
+            <div class="faq-portal-a-inner">
+              <p>Yes! We will have 25+ mentors available throughout the event including Tribastion security researchers,
+                CHARUSAT faculty, and industry professionals. Cloud credits, API access, and development resources will
+                be
+                provided to all registered teams upon confirmation.</p>
+            </div>
           </div>
         </div>
 
-        <div class="faq-item">
-          <div class="faq-q" onclick="toggleFaq(this)">
-            When will registrations open?
-            <div class="faq-icon">+</div>
+        <!-- Q5 -->
+        <div class="faq-portal-item" data-index="4">
+          <div class="faq-portal-q" role="button" tabindex="0" aria-expanded="false" onclick="togglePortal(this)">
+            <span class="faq-portal-qnum">05</span>
+            <span class="faq-portal-qtext">What should I bring to the hackathon?</span>
+            <span class="faq-portal-icon" aria-hidden="true">
+              <svg class="faq-icon-svg" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="12" cy="12" r="10.5" stroke="currentColor" stroke-width="1" />
+                <line x1="12" y1="7" x2="12" y2="17" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                  class="faq-icon-v" />
+                <line x1="7" y1="12" x2="17" y2="12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+              </svg>
+            </span>
           </div>
-          <div class="faq-a">
-            <p>Registrations open in April 2026. We strongly encourage signing up early as participation is capped to
-              ensure quality mentorship and resources. Drop your email via the contact section to get notified the
-              moment registrations go live.</p>
+          <div class="faq-portal-a" role="region">
+            <div class="faq-portal-a-inner">
+              <p>Bring your laptop, charger, valid college ID or government ID, and your most ambitious ideas.
+                Accommodation will be arranged for outstation participants. All hardware, common tools, and food will be
+                provided by the organizers. Projects must be started from scratch at the event.</p>
+            </div>
           </div>
         </div>
-      </div>
-    </div>
+
+        <!-- Q6 -->
+        <div class="faq-portal-item" data-index="5">
+          <div class="faq-portal-q" role="button" tabindex="0" aria-expanded="false" onclick="togglePortal(this)">
+            <span class="faq-portal-qnum">06</span>
+            <span class="faq-portal-qtext">How will projects be judged?</span>
+            <span class="faq-portal-icon" aria-hidden="true">
+              <svg class="faq-icon-svg" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="12" cy="12" r="10.5" stroke="currentColor" stroke-width="1" />
+                <line x1="12" y1="7" x2="12" y2="17" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                  class="faq-icon-v" />
+                <line x1="7" y1="12" x2="17" y2="12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+              </svg>
+            </span>
+          </div>
+          <div class="faq-portal-a" role="region">
+            <div class="faq-portal-a-inner">
+              <p>Projects are evaluated on four criteria: Technical Complexity (25%), Innovation & Originality (25%),
+                Real-World Impact (25%), and Presentation & Demo Quality (25%). All finalist teams will present to a
+                panel
+                of industry judges on the final day.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Q7 -->
+        <div class="faq-portal-item" data-index="6">
+          <div class="faq-portal-q" role="button" tabindex="0" aria-expanded="false" onclick="togglePortal(this)">
+            <span class="faq-portal-qnum">07</span>
+            <span class="faq-portal-qtext">When will registrations open?</span>
+            <span class="faq-portal-icon" aria-hidden="true">
+              <svg class="faq-icon-svg" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="12" cy="12" r="10.5" stroke="currentColor" stroke-width="1" />
+                <line x1="12" y1="7" x2="12" y2="17" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                  class="faq-icon-v" />
+                <line x1="7" y1="12" x2="17" y2="12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+              </svg>
+            </span>
+          </div>
+          <div class="faq-portal-a" role="region">
+            <div class="faq-portal-a-inner">
+              <p>Registrations open in April 2026. We strongly encourage signing up early as participation is capped to
+                ensure quality mentorship and resources. Drop your email via the contact section to get notified the
+                moment registrations go live.</p>
+            </div>
+          </div>
+        </div>
+
+      </div><!-- /.faq-portal-list -->
+    </div><!-- /.section-inner -->
   </section>
-
   <!-- FOOTER -->
   <footer id="footer">
     <div class="footer-grid">
@@ -652,12 +1045,12 @@
         </div>
         <div class="footer-brand-desc">A 48-hour hackathon by CHARUSAT University and Tribastion. Pushing the frontiers
           of cybersecurity, AI, and innovation in the age of Doomsday.</div>
-        <a href="/cdn-cgi/l/email-protection#3c55525a537c484e555e5d4f48555352125f5351" class="contact-email">📧 <span
+        <a href="/cdn-cgi/l/email-protection#3c55525a537c484e555e5d4f48555352125f5351" class="contact-email">=� <span
             class="__cf_email__"
             data-cfemail="bed7d0d8d1fecaccd7dcdfcdcad7d1d090ddd1d3">[email&#160;protected]</span></a>
         <div class="footer-social">
           <a href="#" title="LinkedIn">in</a>
-          <a href="#" title="Twitter/X">𝕏</a>
+          <a href="#" title="Twitter/X">5O</a>
           <a href="#" title="Instagram">ig</a>
           <a href="#" title="Discord">d</a>
         </div>
@@ -694,7 +1087,7 @@
     </div>
 
     <div class="footer-bottom">
-      <div class="footer-copy">© 2026 Hackathon Doomsday Edition. <span>CHARUSAT × Tribastion.</span> All rights
+      <div class="footer-copy">� 2026 Hackathon Doomsday Edition. <span>CHARUSAT � Tribastion.</span> All rights
         reserved.</div>
       <div class="footer-copy" style="display:flex;gap:1.5rem">
         <a href="#" style="color:var(--c-faint);text-decoration:none">Privacy</a>

@@ -13,7 +13,7 @@
     --c-muted: rgba(200, 255, 230, 0.6);
     --c-faint: rgba(200, 255, 230, 0.3);
 
-    /* 🔥 DOOMSDAY GREEN */
+    /* =% DOOMSDAY GREEN */
     --c-primary: #00ffa6;
     --c-accent: #00ffcc;
     --c-toxic: #39ff14;
@@ -35,11 +35,11 @@
     --glow-violet: 0 0 20px rgba(0, 255, 204, 0.4);
 
     /* Fonts:
-         Neo      → main titles & section headings (display)
-         Monday   → UI labels, nav, badges, subheadings (display-ui)
-         Orbitron → numeric / countdown values (numeric)
-         Exo 2    → body paragraphs
-         Rajdhani → mono/tag labels
+         Neo      � main titles & section headings (display)
+         Monday   � UI labels, nav, badges, subheadings (display-ui)
+         Orbitron � numeric / countdown values (numeric)
+         Exo 2    � body paragraphs
+         Rajdhani � mono/tag labels
       */
     --font-title: 'Neo', sans-serif;
     --font-display: 'Monday', sans-serif;
@@ -249,6 +249,8 @@ section {
     justify-content: center;
     text-align: center;
     padding: 8rem 5vw 5rem;
+    position: relative;
+
 }
 
 .hero-badge {
@@ -1060,6 +1062,206 @@ section {
     line-height: 1.5;
 }
 
+/* PPPPPPPPPPPPPPPPPPP SACRED TIMELINE (Loki-style wavy) PPPPPPPPPPPPPPPPPPP */
+
+.sacred-timeline {
+    position: relative;
+    width: 100%;
+    /* tall enough for labels above and below the wave */
+    padding: 120px 0 100px;
+    overflow: visible;
+}
+
+/* The SVG wave fills the full width, fixed height */
+.sacred-wave-svg {
+    width: 100%;
+    height: 220px;
+    display: block;
+    overflow: visible;
+}
+
+/* Animated draw-on for the main wave */
+.sacred-wave-path {
+    stroke-dasharray: 1200;
+    stroke-dashoffset: 1200;
+    transition: stroke-dashoffset 2s ease 0.3s;
+}
+.sacred-timeline.wave-drawn .sacred-wave-path {
+    stroke-dashoffset: 0;
+}
+
+/* TVA scan-line sweep */
+.sacred-scan-line {
+    position: absolute;
+    top: 0; bottom: 0;
+    left: 0;
+    width: 2px;
+    background: linear-gradient(to bottom, transparent, rgba(220,20,60,0.9), transparent);
+    box-shadow: 0 0 12px rgba(220,20,60,0.7), 0 0 24px rgba(255,215,0,0.3);
+    opacity: 0;
+    pointer-events: none;
+    transition: none;
+}
+.sacred-timeline.wave-drawn .sacred-scan-line {
+    animation: scanSweep 2s ease forwards 0.2s;
+}
+@keyframes scanSweep {
+    0%   { left: 0%;   opacity: 1; }
+    90%  { left: 100%; opacity: 1; }
+    100% { left: 100%; opacity: 0; }
+}
+
+/* Node container  absolutely positioned over the SVG */
+.sacred-nodes {
+    position: absolute;
+    /* match the SVG top offset inside .sacred-timeline padding */
+    top: 120px;
+    left: 0;
+    right: 0;
+    height: 220px;
+    pointer-events: none;
+}
+
+/* Each node: absolutely placed via CSS vars --nx (% along wave) --ny (percentage as number, e.g. 50 = 50%) */
+.sacred-node {
+    position: absolute;
+    left: var(--nx);
+    top: var(--ny);
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    pointer-events: auto;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+.sacred-timeline.wave-drawn .sacred-node:nth-child(1) { opacity:1; transition-delay:0.6s; }
+.sacred-timeline.wave-drawn .sacred-node:nth-child(2) { opacity:1; transition-delay:0.9s; }
+.sacred-timeline.wave-drawn .sacred-node:nth-child(3) { opacity:1; transition-delay:1.2s; }
+.sacred-timeline.wave-drawn .sacred-node:nth-child(4) { opacity:1; transition-delay:1.5s; }
+.sacred-timeline.wave-drawn .sacred-node:nth-child(5) { opacity:1; transition-delay:1.8s; }
+
+/* Vertical stem connecting dot to label */
+.sacred-node-line {
+    width: 1px;
+    background: linear-gradient(to bottom, rgba(220,20,60,0.6), rgba(255,215,0,0.3));
+}
+.sacred-node-line.above { height: 40px; order: 0; }
+.sacred-node-line.below { height: 40px; order: 2; }
+
+/* Dot */
+.sacred-node-dot-wrap {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    order: 1;
+}
+.sacred-node-dot {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: var(--c-bg2);
+    border: 2px solid rgba(0,255,170,0.4);
+    position: relative;
+    z-index: 2;
+    transition: border-color 0.3s, box-shadow 0.3s, background 0.3s;
+}
+.sacred-node.active .sacred-node-dot {
+    border-color: var(--c-gold);
+    background: var(--c-crimson);
+    box-shadow:
+        0 0 10px var(--c-gold),
+        0 0 25px rgba(255,215,0,0.5),
+        0 0 40px rgba(220,20,60,0.3);
+    animation: arcReactorPulse 2s ease-in-out infinite;
+}
+.sacred-node-ring {
+    position: absolute;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    border: 1px solid rgba(255,215,0,0.4);
+    opacity: 0;
+    animation: ringPulse 2s ease infinite;
+}
+.sacred-node.active .sacred-node-ring { opacity: 1; }
+
+/* Content label box */
+.sacred-node-content {
+    width: 160px;
+    text-align: center;
+    padding: 0.75rem 0.5rem;
+    background: rgba(5,10,8,0.85);
+    border: 1px solid rgba(0,255,170,0.1);
+    border-radius: 8px;
+    backdrop-filter: blur(8px);
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+.sacred-node:hover .sacred-node-content {
+    border-color: rgba(255,215,0,0.3);
+    box-shadow: 0 0 20px rgba(220,20,60,0.2);
+}
+/* Stack order: content above � label on top, line, dot; content below � dot, line, label */
+.sacred-node-content.above { order: -1; }
+.sacred-node-content.below { order: 3; }
+
+.sacred-node-date {
+    font-family: var(--font-mono);
+    font-size: 0.6rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--c-muted);
+    margin-bottom: 0.3rem;
+}
+.sacred-node-date.active-date { color: var(--c-crimson); }
+.sacred-node-event {
+    font-family: var(--font-display);
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: var(--c-text);
+    margin-bottom: 0.25rem;
+    line-height: 1.2;
+}
+.sacred-node-detail {
+    font-size: 0.7rem;
+    color: var(--c-muted);
+    line-height: 1.5;
+}
+
+/* Responsive: collapse to vertical on mobile */
+@media (max-width: 768px) {
+    .sacred-wave-svg { display: none; }
+    .sacred-nodes {
+        position: static;
+        height: auto;
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+        padding: 0 0.5rem;
+    }
+    .sacred-node {
+        position: static;
+        transform: none;
+        opacity: 1 !important;
+        flex-direction: row;
+        align-items: flex-start;
+        gap: 1rem;
+    }
+    .sacred-node-line { display: none; }
+    .sacred-node-dot-wrap { flex-shrink: 0; margin-top: 0.2rem; order: 0 !important; }
+    .sacred-node-content {
+        text-align: left;
+        width: auto;
+        flex: 1;
+        order: 1 !important;
+    }
+    .sacred-timeline {
+        padding: 1rem 0;
+    }
+    .sacred-scan-line { display: none; }
+}
+
 /* Prizes */
 #prizes {
     background: var(--c-bg);
@@ -1106,9 +1308,10 @@ section {
     padding: 2rem;
     text-align: center;
     position: relative;
-    overflow: hidden;
+    overflow: visible;
     transition: transform 0.3s, border-color 0.3s;
 }
+
 
 .prize-card:hover {
     transform: translateY(-6px);
@@ -1198,7 +1401,7 @@ section {
 
 .prize-crown {
     position: absolute;
-    top: -12px;
+    top: 10px;
     left: 50%;
     transform: translateX(-50%);
     font-family: var(--font-mono);
@@ -1856,7 +2059,7 @@ section {
     color: var(--c-primary);
 }
 
-/* ═══════════════════ CAPTAIN AMERICA SHIELD SCROLL TRANSITION ═══════════════════ */
+/* PPPPPPPPPPPPPPPPPPP CAPTAIN AMERICA SHIELD SCROLL TRANSITION PPPPPPPPPPPPPPPPPPP */
 #shield-transition {
     position: absolute;
 
@@ -1879,11 +2082,11 @@ section {
     width: 100%;
     height: 100%;
 
-    /* 🔥 Metallic glow */
+    /* =% Metallic glow */
     filter:
         drop-shadow(0 0 10px rgba(255, 255, 255, 0.3)) drop-shadow(0 0 25px rgba(255, 0, 0, 0.5)) drop-shadow(0 0 40px rgba(0, 0, 255, 0.4));
 
-    animation: shieldSpin var(--shield-spin-dur, 1.2s) linear infinite;
+    animation: shieldSpin var(--shield-spin-dur, 3.1s) linear infinite;
 }
 
 #shield-transition svg::after {
@@ -1943,5 +2146,1306 @@ section {
     #shield-transition {
         width: 90px;
         height: 90px;
+    }
+}
+
+/* ===== STONES SYSTEM ===== */
+#stones-system {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    height: 100%;
+    transform: translate(-50%, -50%);
+    z-index: 3;
+    pointer-events: none;
+}
+
+/* Stone base */
+.stone-img {
+    position: absolute;
+
+    width: 60px;
+    height: auto;
+
+    top: 50%;
+    left: 50%;
+
+    /* Center correctly */
+    transform: translate(-50%, -50%);
+
+    transform-origin: center;
+
+    opacity: 0.95;
+
+    transform-style: preserve-3d;
+    will-change: transform;
+
+}
+
+/* Different colors glow */
+.stone1 {
+    animation: orbit 18s linear infinite;
+}
+
+.stone2 {
+    animation: orbit 22s linear infinite ;
+    animation-delay: -3s;
+}
+
+.stone3 {
+    animation: orbit 26s linear infinite;
+    animation-delay: -6s;
+}
+
+.stone4 {
+    animation: orbit 30s linear infinite ;
+    animation-delay: -9s;
+}
+
+.stone5 {
+    animation: orbit 34s linear infinite;
+    animation-delay: -12s;
+}
+
+.stone6 {
+    animation: orbit 38s linear infinite ;
+    animation-delay: -15s;
+}
+
+/* Orbit */
+@keyframes orbit {
+    from {
+        transform:
+            translate(-50%, -50%) rotate(0deg) translateX(min(45vw, 600px))
+            /* =% BIG horizontal spread */
+            rotate(0deg);
+    }
+
+    to {
+        transform:
+            translate(-50%, -50%) rotate(360deg) translateX(min(45vw, 600px)) rotate(-360deg);
+    }
+}
+
+@media (max-width: 768px) {
+    .stone-img {
+        width: 50px;
+        transform-origin: -140px center;
+    }
+}
+
+#hero>*:not(#stones-system) {
+    position: relative;
+    z-index: 4;
+}
+
+.hero-center {
+    position: relative;
+    z-index: 4;
+}
+
+/* Background system */
+.track-card {
+  position: relative;
+  overflow: hidden;
+}
+
+/* Avengers image */
+.track-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: right center;
+  background-repeat: no-repeat;
+  opacity: 0.55;
+  z-index: 0;
+  transition: transform 0.4s ease, opacity 0.3s;
+}
+
+/* Dark overlay */
+.track-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, rgba(0,0,0,0.6), rgba(0,0,0,0.9));
+  z-index: 1;
+}
+
+/* Content above */
+.track-card > * {
+  position: relative;
+  z-index: 2;
+}
+
+/* Hover */
+.track-card:hover::before {
+  transform: scale(1.1);
+  opacity: 0.90;
+}
+
+/* Avengers mapping */
+.cybersecurity::before { background-image: url('./Card-images/captain.webp'); }
+.ai::before { background-image: url('./Card-images/ironman.jpg'); }
+.web::before { background-image: url('./Card-images/spider-man.jpg'); }
+.innovation::before { background-image: url('./Card-images/thor.jpg'); }
+
+/* PPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP
+   ARC REACTOR BACKGROUND  #prizes section
+   Append this block to the end of styles.css
+PPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP */
+
+/* Make prizes section a positioning context and clip overflow */
+#prizes {
+    background: var(--c-bg);
+    position: relative;
+    overflow: hidden;
+}
+
+/*    Container that holds reactor + all light effects    */
+.arc-reactor-bg {
+    position: absolute;
+    /* Centred, slightly towards the top so cards overlap it naturally */
+    top: 50%;
+    left: 20%;
+    transform: translate(-50%, -45%);
+
+    /* Large enough to bleed beyond section edges */
+    width: min(900px, 110vw);
+    height: min(900px, 110vw);
+
+    /* Everything inside is layered */
+    display: grid;
+    place-items: center;
+
+    pointer-events: none;
+    z-index: 0;
+}
+
+/*    The reactor image    */
+.arc-reactor-img {
+    position: absolute;
+    width: 55%;
+    height: 55%;
+    object-fit: contain;
+
+    /* Drop the black background so only the glow shows */
+    mix-blend-mode: screen;
+
+    /* Slow, calm rotation */
+    animation: reactorSpin 20s linear infinite;
+
+    /* Base glow matching the image's cyan tones */
+    filter:
+        drop-shadow(0 0 20px rgba(0, 230, 255, 0.7))
+        drop-shadow(0 0 50px rgba(0, 180, 255, 0.5))
+        drop-shadow(0 0 90px rgba(0, 140, 255, 0.3));
+
+    z-index: 2;
+}
+
+@keyframes reactorSpin {
+    from { transform: rotate(0deg);   }
+    to   { transform: rotate(360deg); }
+}
+
+/*    Pulsing concentric rings    */
+.arc-ring {
+    position: absolute;
+    border-radius: 50%;
+    border: 1px solid rgba(0, 220, 255, 0.25);
+    animation: arcRingPulse var(--dur, 3s) ease-out var(--del, 0s) infinite;
+}
+
+.arc-ring-1 { width: 58%;  height: 58%;  --dur: 3.5s; --del: 0s;    border-color: rgba(0,220,255,0.35); }
+.arc-ring-2 { width: 72%;  height: 72%;  --dur: 3.5s; --del: 0.6s;  border-color: rgba(0,200,255,0.22); }
+.arc-ring-3 { width: 86%;  height: 86%;  --dur: 3.5s; --del: 1.2s;  border-color: rgba(0,180,255,0.14); }
+.arc-ring-4 { width: 100%; height: 100%; --dur: 3.5s; --del: 1.8s;  border-color: rgba(0,150,255,0.07); }
+
+@keyframes arcRingPulse {
+    0%   { opacity: 0;   transform: scale(0.85); }
+    20%  { opacity: 1; }
+    80%  { opacity: 0.6; }
+    100% { opacity: 0;   transform: scale(1.12); }
+}
+
+/*    8 light-ray beams radiating from the centre    */
+.arc-rays {
+    position: absolute;
+    inset: 0;
+    animation: raysRotate 12s linear infinite;
+}
+
+@keyframes raysRotate {
+    from { transform: rotate(0deg); }
+    to   { transform: rotate(360deg); }
+}
+
+.arc-ray {
+    position: absolute;
+    top: 50%; left: 50%;
+    /* Ray is a long thin rectangle anchored at centre */
+    width: 2px;
+    height: 46%;
+    transform-origin: top center;
+    transform: rotate(var(--angle)) translateX(-50%);
+    background: linear-gradient(
+        to bottom,
+        rgba(0, 220, 255, 0.55),
+        rgba(0, 180, 255, 0.2) 40%,
+        transparent 100%
+    );
+    filter: blur(2px);
+    /* Rays breathe in and out in sync with the ring pulses */
+    animation: rayBreath 3.5s ease-in-out infinite;
+    animation-delay: calc(var(--angle) / 360 * -3.5s); /* stagger by angle */
+}
+
+@keyframes rayBreath {
+    0%,100% { opacity: 0.3; transform: rotate(var(--angle)) translateX(-50%) scaleX(1);   }
+    50%     { opacity: 0.9; transform: rotate(var(--angle)) translateX(-50%) scaleX(2.5); }
+}
+
+/*    Floor / ambient glow  cyan pool beneath the reactor    */
+.arc-floor-glow {
+    position: absolute;
+    bottom: 5%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
+    height: 30%;
+    background: radial-gradient(
+        ellipse at center top,
+        rgba(0, 200, 255, 0.18) 0%,
+        rgba(0, 150, 255, 0.07) 50%,
+        transparent 100%
+    );
+    filter: blur(18px);
+    animation: floorBreath 4s ease-in-out infinite alternate;
+}
+
+@keyframes floorBreath {
+    from { opacity: 0.6; transform: translateX(-50%) scaleY(0.9);  }
+    to   { opacity: 1;   transform: translateX(-50%) scaleY(1.1); }
+}
+
+/*    Holographic scan-lines    */
+.arc-scanlines {
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    background: repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 3px,
+        rgba(0, 220, 255, 0.018) 3px,
+        rgba(0, 220, 255, 0.018) 4px
+    );
+    animation: scanlinesDrift 8s linear infinite;
+    mix-blend-mode: screen;
+    pointer-events: none;
+}
+
+@keyframes scanlinesDrift {
+    from { background-position: 0 0;   }
+    to   { background-position: 0 80px; }
+}
+
+/*    When the section enters the viewport  power-on surge    */
+#prizes.reactor-on .arc-reactor-img {
+    animation: reactorSpin 20s linear infinite, reactorPowerOn 1.4s ease forwards;
+}
+
+@keyframes reactorPowerOn {
+    0%   { filter: drop-shadow(0 0 4px  rgba(0,220,255,0.2)) brightness(0.3); }
+    30%  { filter: drop-shadow(0 0 60px rgba(0,220,255,1.0)) brightness(1.8); }
+    60%  { filter: drop-shadow(0 0 30px rgba(0,220,255,0.8)) brightness(1.2); }
+    100% {
+        filter:
+            drop-shadow(0 0 20px rgba(0,230,255,0.7))
+            drop-shadow(0 0 50px rgba(0,180,255,0.5))
+            drop-shadow(0 0 90px rgba(0,140,255,0.3));
+    }
+}
+
+/* Also flash the rings on power-on */
+#prizes.reactor-on .arc-ring {
+    animation: arcRingPulse var(--dur, 3.5s) ease-out var(--del, 0s) infinite,
+               reactorPowerOnRing 1.2s ease forwards;
+}
+
+@keyframes reactorPowerOnRing {
+    0%   { opacity: 0; transform: scale(0.5); }
+    50%  { opacity: 1; transform: scale(1.2); }
+    100% { opacity: 1; transform: scale(1);   }
+}
+
+/*    Give prize cards a dark glass tint so they're readable over the glow */
+#prizes .prize-card {
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    background: rgba(0, 8, 5, 0.25) !important;
+    border-color: rgba(0, 220, 255, 0.15) !important;
+}
+
+#prizes .prize-card.first {
+    background: rgba(0, 20, 12, 0.30) !important;
+    border-color: rgba(0, 220, 255, 0.35) !important;
+    box-shadow: 0 0 30px rgba(0, 200, 255, 0.12), inset 0 0 40px rgba(0, 180, 255, 0.05);
+}
+
+#prizes .prize-card.second {
+    background: rgba(0, 8, 5, 0.22) !important;
+    border-color: rgba(0, 180, 255, 0.12) !important;
+}
+
+#prizes .prize-card.third {
+    background: rgba(0, 8, 5, 0.22) !important;
+    border-color: rgba(0, 180, 255, 0.12) !important;
+}
+
+#prizes .special-prize {
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    background: rgba(0, 8, 5, 0.20) !important;
+    border-color: rgba(0, 200, 255, 0.12) !important;
+}
+
+/* PPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP
+   DR STRANGE MAGIC CIRCLE  #sponsors section
+   Append this entire block to the END of styles.css
+PPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP */
+
+/* Section positioning context */
+#sponsors {
+    position: relative;
+    overflow: hidden;
+}
+
+/*    Master container    */
+.strange-bg {
+    position: absolute;
+    top: 50%;
+    left: 75%;
+    transform: translate(-50%, -48%);
+    width: min(600px, 105vw);
+    height: min(600px, 105vw);
+    display: grid;
+    place-items: center;
+    pointer-events: none;
+    z-index: 0;
+}
+
+/*    The two mandala layers   
+   Outer rotates clockwise slowly,
+   inner counter-clockwise faster  classic Strange portal look */
+.strange-mandala {
+    position: absolute;
+    object-fit: contain;
+    /* Black bg disappears via screen blend */
+    mix-blend-mode: screen;
+}
+
+.strange-outer {
+    width: 78%;
+    height: 78%;
+    animation: strangeRotateCW 28s linear infinite;
+    filter:
+        drop-shadow(0 0 18px rgba(255, 140, 0, 0.75))
+        drop-shadow(0 0 45px rgba(255, 100, 0, 0.50))
+        drop-shadow(0 0 80px rgba(255, 60,  0, 0.30));
+    opacity: 0.62;
+}
+
+.strange-inner {
+    width: 48%;
+    height: 48%;
+    animation: strangeRotateCCW 18s linear infinite;
+    filter:
+        drop-shadow(0 0 22px rgba(255, 200, 0, 0.80))
+        drop-shadow(0 0 55px rgba(255, 140, 0, 0.55))
+        drop-shadow(0 0 90px rgba(255, 80,  0, 0.30));
+    opacity: 0.90;
+}
+
+@keyframes strangeRotateCW  { from { transform: rotate(0deg);    } to { transform: rotate(360deg);  } }
+@keyframes strangeRotateCCW { from { transform: rotate(0deg);    } to { transform: rotate(-360deg); } }
+
+/*    Pulsing concentric orange rings    */
+.strange-ring {
+    position: absolute;
+    border-radius: 50%;
+    border: 1px solid rgba(255, 130, 0, 0.30);
+    animation: strangeRingPulse var(--dur, 3.5s) ease-out var(--del, 0s) infinite;
+}
+
+.sr-1 { width: 56%;  height: 56%;  --dur: 3.8s; --del: 0s;    border-color: rgba(255,150, 0, 0.45); }
+.sr-2 { width: 76%;  height: 76%;  --dur: 3.8s; --del: 0.75s; border-color: rgba(255,110, 0, 0.28); }
+.sr-3 { width: 96%;  height: 96%;  --dur: 3.8s; --del: 1.5s;  border-color: rgba(255, 70, 0, 0.15); }
+
+@keyframes strangeRingPulse {
+    0%   { opacity: 0;   transform: scale(0.88); }
+    25%  { opacity: 1; }
+    80%  { opacity: 0.5; }
+    100% { opacity: 0;   transform: scale(1.10); }
+}
+
+/*    Spark / ember particles injected by JS    */
+.strange-sparks {
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+}
+
+.strange-spark {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: var(--sz, 3px);
+    height: var(--sz, 3px);
+    border-radius: 50%;
+    background: var(--col, #ffa500);
+    box-shadow: 0 0 6px var(--col, #ffa500), 0 0 12px rgba(255, 140, 0, 0.6);
+    transform-origin: 0 0;
+    animation: sparkOrbit var(--dur, 4s) linear var(--del, 0s) infinite;
+    opacity: 0;
+}
+
+@keyframes sparkOrbit {
+    0%   { opacity: 0;   transform: rotate(var(--start, 0deg))   translateX(var(--r, 200px)) scale(0.4); }
+    8%   { opacity: 1; }
+    90%  { opacity: 0.8; }
+    100% { opacity: 0;   transform: rotate(var(--end,   360deg)) translateX(var(--r, 200px)) scale(1.2); }
+}
+
+/*    Ambient glow pool at the base    */
+.strange-glow-pool {
+    position: absolute;
+    bottom: 2%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 75%;
+    height: 28%;
+    background: radial-gradient(
+        ellipse at center top,
+        rgba(255, 120, 0, 0.20) 0%,
+        rgba(255,  70, 0, 0.08) 55%,
+        transparent 100%
+    );
+    filter: blur(20px);
+    animation: strangePoolBreath 4.5s ease-in-out infinite alternate;
+}
+
+@keyframes strangePoolBreath {
+    from { opacity: 0.55; transform: translateX(-50%) scaleY(0.88); }
+    to   { opacity: 1.00; transform: translateX(-50%) scaleY(1.12); }
+}
+
+/*    Rune scan-line overlay (horizontal drift = scrolling runes illusion)    */
+.strange-runes-scan {
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    background: repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 4px,
+        rgba(255, 140, 0, 0.015) 4px,
+        rgba(255, 140, 0, 0.015) 5px
+    );
+    mix-blend-mode: screen;
+    animation: runesDrift 10s linear infinite;
+    pointer-events: none;
+}
+
+@keyframes runesDrift {
+    from { background-position: 0 0;    }
+    to   { background-position: 0 80px; }
+}
+
+/*    Power-on surge (triggered via JS IntersectionObserver)    */
+#sponsors.strange-on .strange-outer {
+    animation: strangeRotateCW 28s linear infinite, strangePowerOn 1.5s ease forwards;
+}
+#sponsors.strange-on .strange-inner {
+    animation: strangeRotateCCW 18s linear infinite, strangePowerOn 1.5s ease 0.2s forwards;
+}
+
+@keyframes strangePowerOn {
+    0%   { opacity: 0.05; filter: drop-shadow(0 0 4px  rgba(255,140,0,0.2)) brightness(0.2); }
+    35%  { opacity: 1;    filter: drop-shadow(0 0 70px rgba(255,140,0,1.0)) brightness(2.0); }
+    65%  { opacity: 0.9;  filter: drop-shadow(0 0 35px rgba(255,140,0,0.8)) brightness(1.3); }
+    100% { opacity: 0.85; filter: drop-shadow(0 0 18px rgba(255,140,0,0.75)) drop-shadow(0 0 45px rgba(255,100,0,0.5)); }
+}
+
+/* Rings burst on power-on */
+#sponsors.strange-on .strange-ring {
+    animation:
+        strangeRingPulse var(--dur, 3.8s) ease-out var(--del, 0s) infinite,
+        strangePowerOnRing 1.3s ease forwards;
+}
+
+@keyframes strangePowerOnRing {
+    0%   { opacity: 0; transform: scale(0.4); }
+    55%  { opacity: 1; transform: scale(1.15); }
+    100% { opacity: 1; transform: scale(1); }
+}
+
+/*    Sponsor cards get a warm glass tint over the orange glow    */
+#sponsors .section-inner {
+    position: relative;
+    z-index: 2;
+}
+
+#sponsors .sponsor-logo {
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    background: rgba(5, 3, 0, 0.30) !important;
+    border-color: rgba(255, 130, 0, 0.18) !important;
+}
+
+#sponsors .sponsor-logo:hover {
+    border-color: rgba(255, 160, 0, 0.45) !important;
+    box-shadow: 0 0 20px rgba(255, 120, 0, 0.20) !important;
+}
+
+#sponsors .sponsor-logo.platinum {
+    border-color: rgba(255, 180, 0, 0.30) !important;
+    background: rgba(8, 5, 0, 0.32) !important;
+}
+
+#sponsors .sponsor-placeholder {
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    background: rgba(5, 3, 0, 0.22) !important;
+    border-color: rgba(255, 120, 0, 0.14) !important;
+}
+
+#sponsors .sponsor-placeholder:hover {
+    border-color: rgba(255, 160, 0, 0.35) !important;
+    color: #ffaa00 !important;
+}
+
+/*    Sponsor tier label line matches orange theme    */
+#sponsors .sponsor-tier-label {
+    color: rgba(255, 160, 0, 0.55);
+}
+
+#sponsors .sponsor-tier-label::after {
+    background: rgba(255, 120, 0, 0.20);
+}
+
+/*    Mobile: shrink the circle    */
+@media (max-width: 768px) {
+    .strange-bg {
+        width: 320px;
+        height: 320px;
+        top: 30%;
+        opacity: 0.6;
+    }
+}
+
+/* PPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP
+   TIME STONE FAQ  MYSTIC PORTAL THEME
+   Append this entire block to the END of styles.css
+   All classes prefixed faq- to avoid global conflicts
+PPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP */
+
+/*    Section base    */
+#faq {
+    background: var(--c-bg);
+    position: relative;
+    overflow: hidden;
+}
+
+/*    Magic background container    */
+.faq-magic-bg {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: min(780px, 100vw);
+    height: min(780px, 100vw);
+    display: grid;
+    place-items: center;
+    pointer-events: none;
+    z-index: 0;
+}
+
+/*    SVG mandalas    */
+.faq-mandala {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+.faq-mandala--outer {
+    animation: faqRotateCW 40s linear infinite;
+}
+
+.faq-mandala--inner {
+    width: 55%;
+    height: 55%;
+    animation: faqRotateCCW 26s linear infinite;
+}
+
+@keyframes faqRotateCW  { from { transform: rotate(0deg);    } to { transform: rotate(360deg);  } }
+@keyframes faqRotateCCW { from { transform: rotate(0deg);    } to { transform: rotate(-360deg); } }
+
+/*    Ambient glow pool    */
+.faq-glow-pool {
+    position: absolute;
+    bottom: 8%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 65%;
+    height: 25%;
+    background: radial-gradient(
+        ellipse at center top,
+        rgba(0, 255, 166, 0.10) 0%,
+        rgba(57, 255, 20, 0.04) 55%,
+        transparent 100%
+    );
+    filter: blur(22px);
+    animation: faqPoolBreath 5s ease-in-out infinite alternate;
+}
+
+@keyframes faqPoolBreath {
+    from { opacity: 0.5; transform: translateX(-50%) scaleY(0.85); }
+    to   { opacity: 1.0; transform: translateX(-50%) scaleY(1.15); }
+}
+
+/*    Spark embers container    */
+.faq-sparks { position: absolute; inset: 0; }
+
+/* Individual sparks injected by JS */
+.faq-spark {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: var(--sz, 3px);
+    height: var(--sz, 3px);
+    border-radius: 50%;
+    background: var(--col, #00ffa6);
+    box-shadow: 0 0 6px var(--col, #00ffa6), 0 0 14px rgba(0, 255, 166, 0.5);
+    transform-origin: 0 0;
+    animation: faqSparkOrbit var(--dur, 5s) linear var(--del, 0s) infinite;
+    opacity: 0;
+}
+
+@keyframes faqSparkOrbit {
+    0%   { opacity: 0;   transform: rotate(var(--start, 0deg))   translateX(var(--r, 180px)) scale(0.3); }
+    10%  { opacity: 1; }
+    88%  { opacity: 0.7; }
+    100% { opacity: 0;   transform: rotate(var(--end, 360deg))   translateX(var(--r, 180px)) scale(1.4); }
+}
+
+/*    Portal sub-label    */
+.faq-portal-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: rgba(0, 255, 166, 0.55);
+    margin-top: 1rem;
+}
+
+.faq-portal-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #00ffa6;
+    box-shadow: 0 0 8px #00ffa6, 0 0 16px rgba(0, 255, 166, 0.5);
+    flex-shrink: 0;
+    animation: faqDotPulse 2s ease-in-out infinite;
+}
+
+@keyframes faqDotPulse {
+    0%, 100% { opacity: 1; box-shadow: 0 0 8px #00ffa6, 0 0 16px rgba(0,255,166,0.5); }
+    50%      { opacity: 0.4; box-shadow: 0 0 4px #00ffa6; }
+}
+
+/*    FAQ portal list    */
+.faq-portal-list {
+    margin-top: 3rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.65rem;
+}
+
+/*    Individual FAQ item    */
+.faq-portal-item {
+    position: relative;
+    border-radius: 10px;
+    border: 1px solid rgba(0, 255, 166, 0.10);
+    background: rgba(0, 255, 170, 0.03);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    overflow: hidden;
+    transition:
+        border-color 0.35s ease,
+        box-shadow   0.35s ease,
+        transform    0.35s ease,
+        background   0.35s ease;
+    /* Thin left accent bar */
+    isolation: isolate;
+}
+
+/* Left accent line  hidden by default */
+.faq-portal-item::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 2px;
+    height: 100%;
+    background: linear-gradient(to bottom, #00ffa6, #39ff14);
+    opacity: 0;
+    transition: opacity 0.35s ease;
+    border-radius: 2px 0 0 2px;
+}
+
+/* Hover state */
+.faq-portal-item:hover {
+    border-color: rgba(0, 255, 166, 0.22);
+    background: rgba(0, 255, 170, 0.05);
+    box-shadow: 0 0 18px rgba(0, 255, 166, 0.08);
+}
+
+.faq-portal-item:hover::before {
+    opacity: 0.5;
+}
+
+/* Open / active state */
+.faq-portal-item.faq-open {
+    border-color: rgba(0, 255, 166, 0.30);
+    background: rgba(0, 255, 170, 0.06);
+    box-shadow:
+        0 0 28px rgba(0, 255, 166, 0.14),
+        inset 0 0 30px rgba(0, 255, 166, 0.04);
+    transform: scale(1.008);
+}
+
+.faq-portal-item.faq-open::before {
+    opacity: 1;
+}
+
+/*    Portal question row    */
+.faq-portal-q {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1.2rem 1.5rem;
+    cursor: pointer;
+    user-select: none;
+    /* No outline  we have visual feedback already */
+    outline: none;
+    transition: color 0.25s ease;
+}
+
+.faq-portal-q:focus-visible {
+    outline: 2px solid rgba(0, 255, 166, 0.5);
+    outline-offset: -2px;
+    border-radius: 10px;
+}
+
+/* Question number */
+.faq-portal-qnum {
+    font-family: var(--font-numeric, 'Orbitron', monospace);
+    font-size: 0.62rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    color: rgba(0, 255, 166, 0.35);
+    flex-shrink: 0;
+    transition: color 0.3s ease;
+    min-width: 22px;
+}
+
+.faq-portal-item.faq-open .faq-portal-qnum,
+.faq-portal-item:hover    .faq-portal-qnum {
+    color: #00ffa6;
+    text-shadow: 0 0 10px rgba(0, 255, 166, 0.6);
+}
+
+/* Question text */
+.faq-portal-qtext {
+    flex: 1;
+    font-family: var(--font-display);
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: var(--c-text);
+    line-height: 1.4;
+    transition: color 0.25s ease, text-shadow 0.25s ease;
+}
+
+.faq-portal-item.faq-open .faq-portal-qtext {
+    color: #00ffa6;
+    text-shadow: 0 0 20px rgba(0, 255, 166, 0.25);
+}
+
+/*    Circular icon (+ becomes �)    */
+.faq-portal-icon {
+    flex-shrink: 0;
+    width: 26px;
+    height: 26px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgba(0, 255, 166, 0.45);
+    transition: color 0.3s ease, transform 0.4s cubic-bezier(0.34,1.56,0.64,1);
+}
+
+.faq-icon-svg {
+    width: 22px;
+    height: 22px;
+    overflow: visible;
+}
+
+/* The vertical bar of the + sign rotates out when open (making it a ) */
+.faq-icon-v {
+    transform-origin: 12px 12px;
+    transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.3s ease;
+}
+
+.faq-portal-item.faq-open .faq-portal-icon {
+    color: #00ffa6;
+    transform: rotate(45deg);         /* whole icon tilts 45� � + becomes � */
+    filter: drop-shadow(0 0 6px rgba(0, 255, 166, 0.7));
+}
+
+/*    Portal ripple on open  purely CSS pseudo    */
+.faq-portal-item.faq-open .faq-portal-q::after {
+    content: '';
+    position: absolute;
+    top: 50%; left: 0;
+    width: 100%; height: 100%;
+    transform: translateY(-50%) scaleX(0);
+    background: linear-gradient(90deg,
+        rgba(0, 255, 166, 0.08),
+        rgba(57, 255, 20, 0.04),
+        transparent
+    );
+    animation: faqRipple 0.55s ease forwards;
+    pointer-events: none;
+}
+
+@keyframes faqRipple {
+    from { transform: translateY(-50%) scaleX(0); opacity: 1; }
+    to   { transform: translateY(-50%) scaleX(1); opacity: 0; }
+}
+
+/*    Answer panel    */
+.faq-portal-a {
+    display: grid;
+    grid-template-rows: 0fr;          /* collapsed */
+    transition: grid-template-rows 0.42s cubic-bezier(0.4, 0, 0.2, 1);
+    /* Separate fade handled on inner div */
+}
+
+.faq-portal-item.faq-open .faq-portal-a {
+    grid-template-rows: 1fr;          /* expanded */
+}
+
+/* Inner wrapper  needed for grid-template-rows trick */
+.faq-portal-a-inner {
+    overflow: hidden;
+    padding: 0 1.5rem;
+    opacity: 0;
+    transform: translateY(-6px);
+    transition:
+        opacity   0.38s ease 0.08s,
+        transform 0.38s ease 0.08s,
+        padding   0.30s ease;
+}
+
+.faq-portal-item.faq-open .faq-portal-a-inner {
+    opacity: 1;
+    transform: translateY(0);
+    padding: 0 1.5rem 1.35rem;
+}
+
+.faq-portal-a-inner p {
+    font-size: 0.9rem;
+    color: var(--c-muted);
+    line-height: 1.85;
+    border-left: 2px solid rgba(0, 255, 166, 0.20);
+    padding-left: 1rem;
+    margin: 0;
+}
+
+/*    Separator line between items    */
+.faq-portal-item + .faq-portal-item {
+    /* gap already handled by flex gap */
+}
+
+/*    Floating green particle on item hover (CSS only, no JS)    */
+.faq-portal-item::after {
+    content: '';
+    position: absolute;
+    top: 50%; right: 2.5rem;
+    width: 4px; height: 4px;
+    border-radius: 50%;
+    background: #00ffa6;
+    box-shadow: 0 0 8px #00ffa6;
+    opacity: 0;
+    transform: translateY(-50%) scale(0);
+    transition: opacity 0.3s, transform 0.3s;
+    pointer-events: none;
+}
+
+.faq-portal-item:hover::after {
+    opacity: 0.6;
+    transform: translateY(-50%) scale(1);
+}
+
+/* When open, move the particle so it doesn't conflict with icon rotation */
+.faq-portal-item.faq-open::after { opacity: 0; }
+
+/*    Mobile responsive    */
+@media (max-width: 768px) {
+    .faq-magic-bg {
+        width: 340px;
+        height: 340px;
+        opacity: 0.55;
+    }
+
+    .faq-portal-q {
+        padding: 1rem 1.1rem;
+        gap: 0.75rem;
+    }
+
+    .faq-portal-qnum { display: none; }
+
+    .faq-portal-qtext { font-size: 0.88rem; }
+
+    .faq-portal-a-inner {
+        padding: 0 1.1rem;
+    }
+
+    .faq-portal-item.faq-open .faq-portal-a-inner {
+        padding: 0 1.1rem 1.1rem;
+    }
+}
+
+/* PPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP
+   THOR STORM BATTLEFIELD  #tracks section
+   Append this entire block to the END of styles.css.
+   All new classes prefixed thor- to avoid global conflicts.
+PPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP */
+
+/*    Section: storm atmosphere    */
+#tracks {
+    background: var(--c-bg);
+    position: relative;
+    overflow: hidden;
+    /* Deep storm gradient underneath everything */
+    background-image:
+        radial-gradient(ellipse 80% 60% at 50% 40%,
+            rgba(0, 160, 255, 0.06) 0%,
+            rgba(0, 80,  200, 0.03) 40%,
+            transparent 70%),
+        radial-gradient(ellipse 50% 40% at 50% 100%,
+            rgba(0, 220, 255, 0.04) 0%,
+            transparent 60%);
+}
+
+/*    Lightning canvas: sits behind everything    */
+#thunder-bg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    pointer-events: none;
+    opacity: 0.85;
+}
+
+/*    Storm atmospheric overlay    */
+.thor-storm-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    pointer-events: none;
+    /* Vignette pushing darkness toward edges */
+    background:
+        radial-gradient(ellipse 90% 80% at 50% 50%,
+            transparent 35%,
+            rgba(0, 0, 0, 0.55) 100%);
+    /* Horizontal scan-lines for electric interference */
+    background-image:
+        radial-gradient(ellipse 90% 80% at 50% 50%,
+            transparent 35%,
+            rgba(0, 0, 0, 0.55) 100%),
+        repeating-linear-gradient(
+            0deg,
+            transparent,
+            transparent 3px,
+            rgba(0, 180, 255, 0.012) 3px,
+            rgba(0, 180, 255, 0.012) 4px
+        );
+    animation: thorScanDrift 12s linear infinite;
+}
+
+@keyframes thorScanDrift {
+    from { background-position: 0 0,    0 0;    }
+    to   { background-position: 0 0,    0 60px; }
+}
+
+/*    Thunder flash overlay    */
+.thunder-flash {
+    position: absolute;
+    inset: 0;
+    z-index: 20;
+    pointer-events: none;
+    background: radial-gradient(ellipse at center,
+        rgba(180, 230, 255, 0.95),
+        rgba(100, 180, 255, 0.6));
+    opacity: 0;
+    /* JS controls the animation via class */
+}
+
+.thunder-flash.thor-flash-active {
+    animation: thorFlashPop 0.45s ease forwards;
+}
+
+@keyframes thorFlashPop {
+    0%   { opacity: 0;    }
+    8%   { opacity: 0.18; }
+    20%  { opacity: 0.06; }
+    35%  { opacity: 0.14; }
+    55%  { opacity: 0;    }
+    100% { opacity: 0;    }
+}
+
+/*    Drifting cloud strips    */
+.thor-cloud {
+    position: absolute;
+    left: -30%;
+    width: 160%;
+    pointer-events: none;
+    z-index: 2;
+    border-radius: 100%;
+    filter: blur(40px);
+}
+
+.thor-cloud--1 {
+    height: 120px;
+    top: -30px;
+    background: radial-gradient(ellipse at 40% 50%,
+        rgba(30, 80, 160, 0.18) 0%,
+        transparent 70%);
+    animation: thorCloudDrift 18s ease-in-out infinite alternate;
+}
+
+.thor-cloud--2 {
+    height: 80px;
+    top: 20px;
+    background: radial-gradient(ellipse at 65% 50%,
+        rgba(0, 150, 220, 0.10) 0%,
+        transparent 70%);
+    animation: thorCloudDrift 24s ease-in-out infinite alternate-reverse;
+}
+
+@keyframes thorCloudDrift {
+    from { transform: translateX(0); }
+    to   { transform: translateX(8%); }
+}
+
+/*    Storm status bar    */
+.thor-storm-status {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    margin-top: 1.1rem;
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: rgba(100, 200, 255, 0.55);
+}
+
+.thor-bolt-icon {
+    font-size: 0.75rem;
+    animation: thorBoltFlicker 2s ease-in-out infinite;
+}
+
+@keyframes thorBoltFlicker {
+    0%,100% { opacity: 1;   filter: drop-shadow(0 0 4px rgba(100,200,255,0.8)); }
+    45%     { opacity: 0.3; filter: none; }
+    55%     { opacity: 0.9; filter: drop-shadow(0 0 8px rgba(0,220,255,1)); }
+    60%     { opacity: 0.4; }
+    65%     { opacity: 1;   }
+}
+
+#thor-storm-level {
+    color: #00ccff;
+    text-shadow: 0 0 10px rgba(0, 200, 255, 0.7);
+    transition: color 0.4s ease, text-shadow 0.4s ease;
+}
+
+#thor-storm-level.thor-storm-active {
+    color: #00ffff;
+    text-shadow: 0 0 16px rgba(0, 255, 255, 1), 0 0 30px rgba(0, 200, 255, 0.6);
+}
+
+/*    Track card electric enhancements    */
+
+/* Glowing border that breathes */
+#tracks .track-card {
+    border-color: rgba(0, 160, 255, 0.12);
+    transition:
+        border-color 0.3s ease,
+        transform    0.3s ease,
+        box-shadow   0.3s ease;
+}
+
+/* Hover: electric glow using the card's own color var */
+#tracks .track-card:hover {
+    transform: translateY(-5px);
+    border-color: rgba(var(--thor-card-color, 0,200,255), 0.55) !important;
+    box-shadow:
+        0 0 18px rgba(var(--thor-card-color, 0,200,255), 0.30),
+        0 0 45px rgba(var(--thor-card-color, 0,200,255), 0.14),
+        0  8px 32px rgba(0,0,0,0.5),
+        inset 0 0 20px rgba(var(--thor-card-color, 0,200,255), 0.05);
+}
+
+/* Very subtle card shake on hover  like a thunder vibration */
+#tracks .track-card:hover {
+    animation: thorCardShake 0.35s ease forwards, thorCardFloat 3s ease-in-out 0.35s infinite;
+}
+
+@keyframes thorCardShake {
+    0%   { transform: translateY(-5px) translateX(0);    }
+    20%  { transform: translateY(-5px) translateX(-1px); }
+    40%  { transform: translateY(-5px) translateX(1px);  }
+    60%  { transform: translateY(-5px) translateX(-1px); }
+    80%  { transform: translateY(-5px) translateX(0.5px);}
+    100% { transform: translateY(-5px) translateX(0);    }
+}
+
+@keyframes thorCardFloat {
+    0%,100% { transform: translateY(-5px);  }
+    50%     { transform: translateY(-8px);  }
+}
+
+/*    Electric edge shimmer  thin animated border highlight    */
+.thor-card-edge {
+    position: absolute;
+    inset: 0;
+    border-radius: 16px;
+    z-index: 3;
+    pointer-events: none;
+    /* Rotating conic gradient creates a "racing" electric border */
+    background: conic-gradient(
+        from 0deg,
+        transparent 60%,
+        rgba(var(--thor-card-color, 0,200,255), 0.55) 75%,
+        rgba(255,255,255,0.4) 80%,
+        rgba(var(--thor-card-color, 0,200,255), 0.55) 85%,
+        transparent 100%
+    );
+    -webkit-mask:
+        linear-gradient(#fff 0 0) content-box,
+        linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    padding: 1.5px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    animation: thorEdgeSpin 3s linear infinite paused;
+}
+
+#tracks .track-card:hover .thor-card-edge {
+    opacity: 1;
+    animation-play-state: running;
+}
+
+@keyframes thorEdgeSpin {
+    from { --thor-angle: 0deg;   }
+    to   { --thor-angle: 360deg; }
+}
+
+/* Fallback for browsers without @property: just rotate the pseudo */
+.thor-card-edge {
+    animation: thorEdgeRotate 2.5s linear infinite paused;
+}
+
+#tracks .track-card:hover .thor-card-edge {
+    animation: thorEdgeRotate 2.5s linear infinite running;
+}
+
+@keyframes thorEdgeRotate {
+    from { transform: rotate(0deg);   }
+    to   { transform: rotate(360deg); }
+}
+
+/*    Ripple wave  hammer impact    */
+.thor-ripple {
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: transparent;
+    border: 2px solid rgba(var(--thor-card-color, 0,200,255), 0.7);
+    pointer-events: none;
+    z-index: 3;
+    opacity: 0;
+}
+
+/* JS adds .thor-ripple-active; this drives the animation */
+.thor-ripple.thor-ripple-active {
+    animation: thorRippleExpand 0.8s ease-out forwards;
+}
+
+@keyframes thorRippleExpand {
+    0%   { opacity: 0.9; transform: translateX(-50%) scale(0.3); }
+    60%  { opacity: 0.4; transform: translateX(-50%) scale(3);   }
+    100% { opacity: 0;   transform: translateX(-50%) scale(5);   }
+}
+
+/*    Lightning strike anchor dot (glow point at top of card)    */
+.thor-strike-point {
+    position: absolute;
+    top: -2px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: rgba(var(--thor-card-color, 0,200,255), 0.0);
+    box-shadow: none;
+    pointer-events: none;
+    z-index: 5;
+    transition: background 0.2s, box-shadow 0.2s;
+}
+
+#tracks .track-card:hover .thor-strike-point {
+    background: rgba(var(--thor-card-color, 0,200,255), 1);
+    box-shadow:
+        0 0 8px  rgba(var(--thor-card-color, 0,200,255), 1),
+        0 0 20px rgba(var(--thor-card-color, 0,200,255), 0.7),
+        0 0 40px rgba(var(--thor-card-color, 0,200,255), 0.4);
+}
+
+/*    Ensure card inner content stays on top of all effects    */
+#tracks .track-card > *:not(.thor-card-edge):not(.thor-ripple):not(.thor-strike-point) {
+    position: relative;
+    z-index: 2;
+}
+
+/*    Responsive    */
+@media (max-width: 768px) {
+    .thor-cloud { display: none; }
+    .thor-storm-status { font-size: 0.6rem; }
+    #tracks .track-card:hover {
+        animation: none;
+        transform: translateY(-3px);
     }
 }

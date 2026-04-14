@@ -13,7 +13,7 @@
     --c-muted: rgba(200, 255, 230, 0.6);
     --c-faint: rgba(200, 255, 230, 0.3);
 
-    /* =% DOOMSDAY GREEN */
+    /* 🔥 DOOMSDAY GREEN */
     --c-primary: #00ffa6;
     --c-accent: #00ffcc;
     --c-toxic: #39ff14;
@@ -35,11 +35,11 @@
     --glow-violet: 0 0 20px rgba(0, 255, 204, 0.4);
 
     /* Fonts:
-         Neo      � main titles & section headings (display)
-         Monday   � UI labels, nav, badges, subheadings (display-ui)
-         Orbitron � numeric / countdown values (numeric)
-         Exo 2    � body paragraphs
-         Rajdhani � mono/tag labels
+         Neo      → main titles & section headings (display)
+         Monday   → UI labels, nav, badges, subheadings (display-ui)
+         Orbitron → numeric / countdown values (numeric)
+         Exo 2    → body paragraphs
+         Rajdhani → mono/tag labels
       */
     --font-title: 'Neo', sans-serif;
     --font-display: 'Monday', sans-serif;
@@ -1062,7 +1062,7 @@ section {
     line-height: 1.5;
 }
 
-/* PPPPPPPPPPPPPPPPPPP SACRED TIMELINE (Loki-style wavy) PPPPPPPPPPPPPPPPPPP */
+/* ═══════════════════ SACRED TIMELINE (Loki-style wavy) ═══════════════════ */
 
 .sacred-timeline {
     position: relative;
@@ -1111,7 +1111,7 @@ section {
     100% { left: 100%; opacity: 0; }
 }
 
-/* Node container  absolutely positioned over the SVG */
+/* Node container — absolutely positioned over the SVG */
 .sacred-nodes {
     position: absolute;
     /* match the SVG top offset inside .sacred-timeline padding */
@@ -1202,7 +1202,7 @@ section {
     border-color: rgba(255,215,0,0.3);
     box-shadow: 0 0 20px rgba(220,20,60,0.2);
 }
-/* Stack order: content above � label on top, line, dot; content below � dot, line, label */
+/* Stack order: content above → label on top, line, dot; content below → dot, line, label */
 .sacred-node-content.above { order: -1; }
 .sacred-node-content.below { order: 3; }
 
@@ -2059,7 +2059,7 @@ section {
     color: var(--c-primary);
 }
 
-/* PPPPPPPPPPPPPPPPPPP CAPTAIN AMERICA SHIELD SCROLL TRANSITION PPPPPPPPPPPPPPPPPPP */
+/* ═══════════════════ CAPTAIN AMERICA SHIELD SCROLL TRANSITION ═══════════════════ */
 #shield-transition {
     position: absolute;
 
@@ -2082,7 +2082,7 @@ section {
     width: 100%;
     height: 100%;
 
-    /* =% Metallic glow */
+    /* 🔥 Metallic glow */
     filter:
         drop-shadow(0 0 10px rgba(255, 255, 255, 0.3)) drop-shadow(0 0 25px rgba(255, 0, 0, 0.5)) drop-shadow(0 0 40px rgba(0, 0, 255, 0.4));
 
@@ -2218,7 +2218,7 @@ section {
     from {
         transform:
             translate(-50%, -50%) rotate(0deg) translateX(min(45vw, 600px))
-            /* =% BIG horizontal spread */
+            /* 🔥 BIG horizontal spread */
             rotate(0deg);
     }
 
@@ -2291,10 +2291,10 @@ section {
 .web::before { background-image: url('./Card-images/spider-man.jpg'); }
 .innovation::before { background-image: url('./Card-images/thor.jpg'); }
 
-/* PPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP
-   ARC REACTOR BACKGROUND  #prizes section
+/* ═══════════════════════════════════════════════════════════
+   ARC REACTOR BACKGROUND — #prizes section
    Append this block to the end of styles.css
-PPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP */
+═══════════════════════════════════════════════════════════ */
 
 /* Make prizes section a positioning context and clip overflow */
 #prizes {
@@ -2303,7 +2303,7 @@ PPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP */
     overflow: hidden;
 }
 
-/*    Container that holds reactor + all light effects    */
+/* ── Container that holds reactor + all light effects ── */
 .arc-reactor-bg {
     position: absolute;
     /* Centred, slightly towards the top so cards overlap it naturally */
@@ -2323,7 +2323,7 @@ PPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP */
     z-index: 0;
 }
 
-/*    The reactor image    */
+/* ── The reactor image ── */
 .arc-reactor-img {
     position: absolute;
     width: 55%;
@@ -2350,7 +2350,7 @@ PPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP */
     to   { transform: rotate(360deg); }
 }
 
-/*    Pulsing concentric rings    */
+/* ── Pulsing concentric rings ── */
 .arc-ring {
     position: absolute;
     border-radius: 50%;
@@ -2370,7 +2370,7 @@ PPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP */
     100% { opacity: 0;   transform: scale(1.12); }
 }
 
-/*    8 light-ray beams radiating from the centre    */
+/* ── 8 light-ray beams radiating from the centre ── */
 .arc-rays {
     position: absolute;
     inset: 0;
@@ -2407,7 +2407,7 @@ PPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP */
     50%     { opacity: 0.9; transform: rotate(var(--angle)) translateX(-50%) scaleX(2.5); }
 }
 
-/*    Floor / ambient glow  cyan pool beneath the reactor    */
+/* ── Floor / ambient glow — cyan pool beneath the reactor ── */
 .arc-floor-glow {
     position: absolute;
     bottom: 5%;
@@ -2430,7 +2430,7 @@ PPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP */
     to   { opacity: 1;   transform: translateX(-50%) scaleY(1.1); }
 }
 
-/*    Holographic scan-lines    */
+/* ── Holographic scan-lines ── */
 .arc-scanlines {
     position: absolute;
     inset: 0;
@@ -2452,7 +2452,7 @@ PPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP */
     to   { background-position: 0 80px; }
 }
 
-/*    When the section enters the viewport  power-on surge    */
+/* ── When the section enters the viewport — power-on surge ── */
 #prizes.reactor-on .arc-reactor-img {
     animation: reactorSpin 20s linear infinite, reactorPowerOn 1.4s ease forwards;
 }
@@ -2481,7 +2481,7 @@ PPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP */
     100% { opacity: 1; transform: scale(1);   }
 }
 
-/*    Give prize cards a dark glass tint so they're readable over the glow */
+/* ── Give prize cards a dark glass tint so they're readable over the glow */
 #prizes .prize-card {
     backdrop-filter: blur(6px);
     -webkit-backdrop-filter: blur(6px);
@@ -2512,10 +2512,10 @@ PPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP */
     border-color: rgba(0, 200, 255, 0.12) !important;
 }
 
-/* PPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP
-   DR STRANGE MAGIC CIRCLE  #sponsors section
+/* ═══════════════════════════════════════════════════════════
+   DR STRANGE MAGIC CIRCLE — #sponsors section
    Append this entire block to the END of styles.css
-PPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP */
+═══════════════════════════════════════════════════════════ */
 
 /* Section positioning context */
 #sponsors {
@@ -2523,7 +2523,7 @@ PPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP */
     overflow: hidden;
 }
 
-/*    Master container    */
+/* ── Master container ── */
 .strange-bg {
     position: absolute;
     top: 50%;
@@ -2537,9 +2537,9 @@ PPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP */
     z-index: 0;
 }
 
-/*    The two mandala layers   
+/* ── The two mandala layers ──
    Outer rotates clockwise slowly,
-   inner counter-clockwise faster  classic Strange portal look */
+   inner counter-clockwise faster — classic Strange portal look */
 .strange-mandala {
     position: absolute;
     object-fit: contain;
@@ -2572,7 +2572,7 @@ PPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP */
 @keyframes strangeRotateCW  { from { transform: rotate(0deg);    } to { transform: rotate(360deg);  } }
 @keyframes strangeRotateCCW { from { transform: rotate(0deg);    } to { transform: rotate(-360deg); } }
 
-/*    Pulsing concentric orange rings    */
+/* ── Pulsing concentric orange rings ── */
 .strange-ring {
     position: absolute;
     border-radius: 50%;
@@ -2591,7 +2591,7 @@ PPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP */
     100% { opacity: 0;   transform: scale(1.10); }
 }
 
-/*    Spark / ember particles injected by JS    */
+/* ── Spark / ember particles injected by JS ── */
 .strange-sparks {
     position: absolute;
     inset: 0;
@@ -2619,7 +2619,7 @@ PPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP */
     100% { opacity: 0;   transform: rotate(var(--end,   360deg)) translateX(var(--r, 200px)) scale(1.2); }
 }
 
-/*    Ambient glow pool at the base    */
+/* ── Ambient glow pool at the base ── */
 .strange-glow-pool {
     position: absolute;
     bottom: 2%;
@@ -2642,7 +2642,7 @@ PPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP */
     to   { opacity: 1.00; transform: translateX(-50%) scaleY(1.12); }
 }
 
-/*    Rune scan-line overlay (horizontal drift = scrolling runes illusion)    */
+/* ── Rune scan-line overlay (horizontal drift = scrolling runes illusion) ── */
 .strange-runes-scan {
     position: absolute;
     inset: 0;
@@ -2664,7 +2664,7 @@ PPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP */
     to   { background-position: 0 80px; }
 }
 
-/*    Power-on surge (triggered via JS IntersectionObserver)    */
+/* ── Power-on surge (triggered via JS IntersectionObserver) ── */
 #sponsors.strange-on .strange-outer {
     animation: strangeRotateCW 28s linear infinite, strangePowerOn 1.5s ease forwards;
 }
@@ -2692,7 +2692,7 @@ PPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP */
     100% { opacity: 1; transform: scale(1); }
 }
 
-/*    Sponsor cards get a warm glass tint over the orange glow    */
+/* ── Sponsor cards get a warm glass tint over the orange glow ── */
 #sponsors .section-inner {
     position: relative;
     z-index: 2;
@@ -2727,7 +2727,7 @@ PPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP */
     color: #ffaa00 !important;
 }
 
-/*    Sponsor tier label line matches orange theme    */
+/* ── Sponsor tier label line matches orange theme ── */
 #sponsors .sponsor-tier-label {
     color: rgba(255, 160, 0, 0.55);
 }
@@ -2736,7 +2736,7 @@ PPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP */
     background: rgba(255, 120, 0, 0.20);
 }
 
-/*    Mobile: shrink the circle    */
+/* ── Mobile: shrink the circle ── */
 @media (max-width: 768px) {
     .strange-bg {
         width: 320px;
@@ -2746,20 +2746,20 @@ PPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP */
     }
 }
 
-/* PPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP
-   TIME STONE FAQ  MYSTIC PORTAL THEME
+/* ════════════════════════════════════════════════════════════════
+   TIME STONE FAQ — MYSTIC PORTAL THEME
    Append this entire block to the END of styles.css
    All classes prefixed faq- to avoid global conflicts
-PPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP */
+════════════════════════════════════════════════════════════════ */
 
-/*    Section base    */
+/* ── Section base ── */
 #faq {
     background: var(--c-bg);
     position: relative;
     overflow: hidden;
 }
 
-/*    Magic background container    */
+/* ── Magic background container ── */
 .faq-magic-bg {
     position: absolute;
     top: 50%;
@@ -2773,7 +2773,7 @@ PPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP */
     z-index: 0;
 }
 
-/*    SVG mandalas    */
+/* ── SVG mandalas ── */
 .faq-mandala {
     position: absolute;
     width: 100%;
@@ -2793,7 +2793,7 @@ PPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP */
 @keyframes faqRotateCW  { from { transform: rotate(0deg);    } to { transform: rotate(360deg);  } }
 @keyframes faqRotateCCW { from { transform: rotate(0deg);    } to { transform: rotate(-360deg); } }
 
-/*    Ambient glow pool    */
+/* ── Ambient glow pool ── */
 .faq-glow-pool {
     position: absolute;
     bottom: 8%;
@@ -2816,7 +2816,7 @@ PPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP */
     to   { opacity: 1.0; transform: translateX(-50%) scaleY(1.15); }
 }
 
-/*    Spark embers container    */
+/* ── Spark embers container ── */
 .faq-sparks { position: absolute; inset: 0; }
 
 /* Individual sparks injected by JS */
@@ -2841,7 +2841,7 @@ PPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP */
     100% { opacity: 0;   transform: rotate(var(--end, 360deg))   translateX(var(--r, 180px)) scale(1.4); }
 }
 
-/*    Portal sub-label    */
+/* ── Portal sub-label ── */
 .faq-portal-label {
     display: inline-flex;
     align-items: center;
@@ -2869,7 +2869,7 @@ PPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP */
     50%      { opacity: 0.4; box-shadow: 0 0 4px #00ffa6; }
 }
 
-/*    FAQ portal list    */
+/* ── FAQ portal list ── */
 .faq-portal-list {
     margin-top: 3rem;
     display: flex;
@@ -2877,7 +2877,7 @@ PPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP */
     gap: 0.65rem;
 }
 
-/*    Individual FAQ item    */
+/* ── Individual FAQ item ── */
 .faq-portal-item {
     position: relative;
     border-radius: 10px;
@@ -2895,7 +2895,7 @@ PPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP */
     isolation: isolate;
 }
 
-/* Left accent line  hidden by default */
+/* Left accent line — hidden by default */
 .faq-portal-item::before {
     content: '';
     position: absolute;
@@ -2933,7 +2933,7 @@ PPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP */
     opacity: 1;
 }
 
-/*    Portal question row    */
+/* ── Portal question row ── */
 .faq-portal-q {
     display: flex;
     align-items: center;
@@ -2941,7 +2941,7 @@ PPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP */
     padding: 1.2rem 1.5rem;
     cursor: pointer;
     user-select: none;
-    /* No outline  we have visual feedback already */
+    /* No outline — we have visual feedback already */
     outline: none;
     transition: color 0.25s ease;
 }
@@ -2986,7 +2986,7 @@ PPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP */
     text-shadow: 0 0 20px rgba(0, 255, 166, 0.25);
 }
 
-/*    Circular icon (+ becomes �)    */
+/* ── Circular icon (+ becomes ×) ── */
 .faq-portal-icon {
     flex-shrink: 0;
     width: 26px;
@@ -3004,7 +3004,7 @@ PPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP */
     overflow: visible;
 }
 
-/* The vertical bar of the + sign rotates out when open (making it a ) */
+/* The vertical bar of the + sign rotates out when open (making it a −) */
 .faq-icon-v {
     transform-origin: 12px 12px;
     transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.3s ease;
@@ -3012,11 +3012,11 @@ PPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP */
 
 .faq-portal-item.faq-open .faq-portal-icon {
     color: #00ffa6;
-    transform: rotate(45deg);         /* whole icon tilts 45� � + becomes � */
+    transform: rotate(45deg);         /* whole icon tilts 45° → + becomes × */
     filter: drop-shadow(0 0 6px rgba(0, 255, 166, 0.7));
 }
 
-/*    Portal ripple on open  purely CSS pseudo    */
+/* ── Portal ripple on open — purely CSS pseudo ── */
 .faq-portal-item.faq-open .faq-portal-q::after {
     content: '';
     position: absolute;
@@ -3037,7 +3037,7 @@ PPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP */
     to   { transform: translateY(-50%) scaleX(1); opacity: 0; }
 }
 
-/*    Answer panel    */
+/* ── Answer panel ── */
 .faq-portal-a {
     display: grid;
     grid-template-rows: 0fr;          /* collapsed */
@@ -3049,7 +3049,7 @@ PPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP */
     grid-template-rows: 1fr;          /* expanded */
 }
 
-/* Inner wrapper  needed for grid-template-rows trick */
+/* Inner wrapper — needed for grid-template-rows trick */
 .faq-portal-a-inner {
     overflow: hidden;
     padding: 0 1.5rem;
@@ -3076,12 +3076,12 @@ PPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP */
     margin: 0;
 }
 
-/*    Separator line between items    */
+/* ── Separator line between items ── */
 .faq-portal-item + .faq-portal-item {
     /* gap already handled by flex gap */
 }
 
-/*    Floating green particle on item hover (CSS only, no JS)    */
+/* ── Floating green particle on item hover (CSS only, no JS) ── */
 .faq-portal-item::after {
     content: '';
     position: absolute;
@@ -3104,7 +3104,7 @@ PPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP */
 /* When open, move the particle so it doesn't conflict with icon rotation */
 .faq-portal-item.faq-open::after { opacity: 0; }
 
-/*    Mobile responsive    */
+/* ── Mobile responsive ── */
 @media (max-width: 768px) {
     .faq-magic-bg {
         width: 340px;
@@ -3130,13 +3130,13 @@ PPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP */
     }
 }
 
-/* PPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP
-   THOR STORM BATTLEFIELD  #tracks section
+/* ════════════════════════════════════════════════════════════════
+   THOR STORM BATTLEFIELD — #tracks section
    Append this entire block to the END of styles.css.
    All new classes prefixed thor- to avoid global conflicts.
-PPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP */
+════════════════════════════════════════════════════════════════ */
 
-/*    Section: storm atmosphere    */
+/* ── Section: storm atmosphere ── */
 #tracks {
     background: var(--c-bg);
     position: relative;
@@ -3152,7 +3152,7 @@ PPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP */
             transparent 60%);
 }
 
-/*    Lightning canvas: sits behind everything    */
+/* ── Lightning canvas: sits behind everything ── */
 #thunder-bg {
     position: absolute;
     inset: 0;
@@ -3163,7 +3163,7 @@ PPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP */
     opacity: 0.85;
 }
 
-/*    Storm atmospheric overlay    */
+/* ── Storm atmospheric overlay ── */
 .thor-storm-overlay {
     position: absolute;
     inset: 0;
@@ -3194,7 +3194,7 @@ PPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP */
     to   { background-position: 0 0,    0 60px; }
 }
 
-/*    Thunder flash overlay    */
+/* ── Thunder flash overlay ── */
 .thunder-flash {
     position: absolute;
     inset: 0;
@@ -3220,7 +3220,7 @@ PPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP */
     100% { opacity: 0;    }
 }
 
-/*    Drifting cloud strips    */
+/* ── Drifting cloud strips ── */
 .thor-cloud {
     position: absolute;
     left: -30%;
@@ -3254,7 +3254,7 @@ PPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP */
     to   { transform: translateX(8%); }
 }
 
-/*    Storm status bar    */
+/* ── Storm status bar ── */
 .thor-storm-status {
     display: inline-flex;
     align-items: center;
@@ -3291,7 +3291,7 @@ PPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP */
     text-shadow: 0 0 16px rgba(0, 255, 255, 1), 0 0 30px rgba(0, 200, 255, 0.6);
 }
 
-/*    Track card electric enhancements    */
+/* ── Track card electric enhancements ── */
 
 /* Glowing border that breathes */
 #tracks .track-card {
@@ -3313,7 +3313,7 @@ PPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP */
         inset 0 0 20px rgba(var(--thor-card-color, 0,200,255), 0.05);
 }
 
-/* Very subtle card shake on hover  like a thunder vibration */
+/* Very subtle card shake on hover — like a thunder vibration */
 #tracks .track-card:hover {
     animation: thorCardShake 0.35s ease forwards, thorCardFloat 3s ease-in-out 0.35s infinite;
 }
@@ -3332,7 +3332,7 @@ PPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP */
     50%     { transform: translateY(-8px);  }
 }
 
-/*    Electric edge shimmer  thin animated border highlight    */
+/* ── Electric edge shimmer — thin animated border highlight ── */
 .thor-card-edge {
     position: absolute;
     inset: 0;
@@ -3383,7 +3383,7 @@ PPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP */
     to   { transform: rotate(360deg); }
 }
 
-/*    Ripple wave  hammer impact    */
+/* ── Ripple wave — hammer impact ── */
 .thor-ripple {
     position: absolute;
     bottom: -10px;
@@ -3410,7 +3410,7 @@ PPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP */
     100% { opacity: 0;   transform: translateX(-50%) scale(5);   }
 }
 
-/*    Lightning strike anchor dot (glow point at top of card)    */
+/* ── Lightning strike anchor dot (glow point at top of card) ── */
 .thor-strike-point {
     position: absolute;
     top: -2px;
@@ -3434,13 +3434,13 @@ PPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP */
         0 0 40px rgba(var(--thor-card-color, 0,200,255), 0.4);
 }
 
-/*    Ensure card inner content stays on top of all effects    */
+/* ── Ensure card inner content stays on top of all effects ── */
 #tracks .track-card > *:not(.thor-card-edge):not(.thor-ripple):not(.thor-strike-point) {
     position: relative;
     z-index: 2;
 }
 
-/*    Responsive    */
+/* ── Responsive ── */
 @media (max-width: 768px) {
     .thor-cloud { display: none; }
     .thor-storm-status { font-size: 0.6rem; }
@@ -3448,4 +3448,20 @@ PPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP */
         animation: none;
         transform: translateY(-3px);
     }
+}
+
+/* Default = ORIGINAL COLOR */
+.sponsor-img {
+  filter: none;
+  transition: filter 0.4s ease, transform 0.3s ease;
+}
+
+/* Hover = WHITE */
+.sponsor-logo:hover .sponsor-img {
+  filter: brightness(0) invert(1);
+  transform: scale(1.05);
+}
+
+.sponsor-logo:hover {
+  box-shadow: 0 0 25px rgba(255,255,255,0.15);
 }

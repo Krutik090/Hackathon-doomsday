@@ -1,4 +1,4 @@
-/* PPPPPPPPPPPPPPPPPPP CUSTOM CURSOR PPPPPPPPPPPPPPPPPPP */
+/* ═══════════════════ CUSTOM CURSOR ═══════════════════ */
 const dot = document.getElementById('cursor-dot');
 const ring = document.getElementById('cursor-ring');
 let mx = 0, my = 0, rx = 0, ry = 0;
@@ -15,13 +15,13 @@ document.querySelectorAll('a,button,.track-card,.faq-q,.prize-card').forEach(el 
   el.addEventListener('mouseleave', () => document.body.classList.remove('cursor-hover'));
 });
 
-/* PPPPPPPPPPPPPPPPPPP NAV SCROLL PPPPPPPPPPPPPPPPPPP */
+/* ═══════════════════ NAV SCROLL ═══════════════════ */
 const nav = document.getElementById('main-nav');
 window.addEventListener('scroll', () => {
   nav.classList.toggle('scrolled', window.scrollY > 50);
 });
 
-/* PPPPPPPPPPPPPPPPPPP HERO CANVAS (Animated Grid + Particles) PPPPPPPPPPPPPPPPPPP */
+/* ═══════════════════ HERO CANVAS (Animated Grid + Particles) ═══════════════════ */
 const canvas = document.getElementById('hero-canvas');
 const ctx = canvas.getContext('2d');
 let W, H, particles = [], tick = 0;
@@ -128,13 +128,13 @@ function animate() {
 }
 animate();
 
-/* PPPPPPPPPPPPPPPPPPP COUNTDOWN PPPPPPPPPPPPPPPPPPP */
+/* ═══════════════════ COUNTDOWN ═══════════════════ */
 const target = new Date('2026-06-06T09:00:00+05:30');
 function updateCountdown() {
   const now = new Date();
   const diff = target - now;
   if (diff <= 0) {
-    document.getElementById('countdown').innerHTML = '<div style="font-family:var(--font-mono);color:var(--c-crimson);font-size:1.2rem;letter-spacing:0.1em;text-shadow:0 0 20px var(--c-crimson)">DOOMSDAY HAS BEGUN �</div>';
+    document.getElementById('countdown').innerHTML = '<div style="font-family:var(--font-mono);color:var(--c-crimson);font-size:1.2rem;letter-spacing:0.1em;text-shadow:0 0 20px var(--c-crimson)">DOOMSDAY HAS BEGUN ⚔️</div>';
     return;
   }
   const d = Math.floor(diff / 86400000);
@@ -149,14 +149,14 @@ function updateCountdown() {
 updateCountdown();
 setInterval(updateCountdown, 1000);
 
-/* PPPPPPPPPPPPPPPPPPP SCROLL REVEAL PPPPPPPPPPPPPPPPPPP */
+/* ═══════════════════ SCROLL REVEAL ═══════════════════ */
 const reveals = document.querySelectorAll('.reveal');
 const observer = new IntersectionObserver((entries) => {
   entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); } });
 }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
 reveals.forEach(el => observer.observe(el));
 
-/* PPPPPPPPPPPPPPPPPPP SACRED TIMELINE WAVE DRAW PPPPPPPPPPPPPPPPPPP */
+/* ═══════════════════ SACRED TIMELINE WAVE DRAW ═══════════════════ */
 (function() {
     const sacredTimeline = document.querySelector('.sacred-timeline');
     const wavePath = document.getElementById('sacred-wave-path');
@@ -181,7 +181,7 @@ reveals.forEach(el => observer.observe(el));
     waveObserver.observe(sacredTimeline);
 })();
 
-/* PPPPPPPPPPPPPPPPPPP FAQ ACCORDION PPPPPPPPPPPPPPPPPPP */
+/* ═══════════════════ FAQ ACCORDION ═══════════════════ */
 function toggleFaq(btn) {
   const item = btn.closest('.faq-item');
   const isOpen = item.classList.contains('open');
@@ -189,7 +189,7 @@ function toggleFaq(btn) {
   if (!isOpen) item.classList.add('open');
 }
 
-/* PPPPPPPPPPPPPPPPPPP SMOOTH SCROLL PPPPPPPPPPPPPPPPPPP */
+/* ═══════════════════ SMOOTH SCROLL ═══════════════════ */
 document.querySelectorAll('a[href^="#"]').forEach(a => {
   a.addEventListener('click', e => {
     const target = document.querySelector(a.getAttribute('href'));
@@ -197,7 +197,7 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
   });
 });
 
-/* PPPPPPPPPPPPPPPPPPP PARALLAX HERO PPPPPPPPPPPPPPPPPPP */
+/* ═══════════════════ PARALLAX HERO ═══════════════════ */
 window.addEventListener('scroll', () => {
   const y = window.scrollY;
   const hero = document.getElementById('hero');
@@ -207,7 +207,7 @@ window.addEventListener('scroll', () => {
     hero.querySelector('.hero-sub').style.transform = `translateY(${y * 0.1}px)`;
   }
 });
-/* PPPPPPPPPPPPPPPPPPP CAPTAIN AMERICA SHIELD SCROLL TRANSITION PPPPPPPPPPPPPPPPPPP */
+/* ═══════════════════ CAPTAIN AMERICA SHIELD SCROLL TRANSITION ═══════════════════ */
 (function () {
   const shield = document.getElementById('shield-transition');
   if (!shield) return;
@@ -221,10 +221,10 @@ window.addEventListener('scroll', () => {
   let rafId = null;
 
   /* 
-   * The shield travels left � right across the viewport as the user scrolls
+   * The shield travels left → right across the viewport as the user scrolls
    * from the bottom of #hero into #about.
    * 
-   * Trigger zone: from heroSection.bottom - 100px  �  heroSection.bottom + 300px
+   * Trigger zone: from heroSection.bottom - 100px  →  heroSection.bottom + 300px
    * (i.e. the shield appears just before you leave the hero and disappears
    *  once you're comfortably inside the about section)
    */
@@ -274,7 +274,7 @@ window.addEventListener('scroll', () => {
 
     // Vertical arc via transform (keep the -50% centering + arc offset)
     const scale = 0.6 + Math.sin(progress * Math.PI) * 0.8;
-    // start small � max at center � shrink again
+    // start small → max at center → shrink again
 
     shield.style.transform = `
   translateY(calc(-50% + ${arc}px))
@@ -304,11 +304,11 @@ function toggleBranch(el) {
   item.classList.toggle('active-branch');
 }
 
-/* PPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP
-   ARC REACTOR  PRIZES SECTION  (append to end of scripts.js)
+/* ═══════════════════════════════════════════════════════════
+   ARC REACTOR — PRIZES SECTION  (append to end of scripts.js)
    Triggers a "power-on" surge when the section enters viewport,
    and adds a subtle mouse-parallax tilt to the reactor image.
-PPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP */
+═══════════════════════════════════════════════════════════ */
 
 (function () {
     const prizesSection = document.getElementById('prizes');
@@ -316,7 +316,7 @@ PPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP */
     const reactorBg     = document.querySelector('.arc-reactor-bg');
     if (!prizesSection || !reactorImg || !reactorBg) return;
 
-    /*    1. Power-on when section scrolls into view    */
+    /* ── 1. Power-on when section scrolls into view ── */
     const reactorObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
@@ -331,15 +331,15 @@ PPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP */
 
     reactorObserver.observe(prizesSection);
 
-    /*    2. Mouse-parallax: reactor tilts slightly toward cursor    */
+    /* ── 2. Mouse-parallax: reactor tilts slightly toward cursor ── */
     prizesSection.addEventListener('mousemove', (e) => {
         const rect   = prizesSection.getBoundingClientRect();
         const cx     = rect.left + rect.width  / 2;
         const cy     = rect.top  + rect.height / 2;
-        const dx     = (e.clientX - cx) / (rect.width  / 2); /* 1 & +1 */
+        const dx     = (e.clientX - cx) / (rect.width  / 2); /* –1 … +1 */
         const dy     = (e.clientY - cy) / (rect.height / 2);
 
-        /* Gentle tilt  max �6� */
+        /* Gentle tilt — max ±6° */
         const rotX   = -dy * 6;
         const rotY   =  dx * 6;
 
@@ -354,7 +354,7 @@ PPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP */
         setTimeout(() => { reactorBg.style.transition = ''; }, 800);
     });
 
-    /*    3. Energy-burst on prize card hover    */
+    /* ── 3. Energy-burst on prize card hover ── */
     document.querySelectorAll('.prize-card').forEach(card => {
         card.addEventListener('mouseenter', () => {
             /* Briefly crank up the reactor glow */
@@ -375,10 +375,10 @@ PPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP */
     });
 })();
 
-/* PPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP
-   DR STRANGE MAGIC CIRCLE  #sponsors section
+/* ═══════════════════════════════════════════════════════════
+   DR STRANGE MAGIC CIRCLE — #sponsors section
    Append this entire block to the END of scripts.js
-PPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP */
+═══════════════════════════════════════════════════════════ */
 
 (function () {
     const sponsorsSection = document.getElementById('sponsors');
@@ -389,7 +389,7 @@ PPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP */
 
     if (!sponsorsSection || !strangeBg || !sparksContainer) return;
 
-    /*    1. Spawn sling-ring ember sparks orbiting the circle    */
+    /* ── 1. Spawn sling-ring ember sparks orbiting the circle ── */
     const SPARK_COUNT = 28;
     const COLORS = [
         '#ff9000', '#ffb700', '#ff6600',
@@ -401,7 +401,7 @@ PPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP */
         spark.className = 'strange-spark';
 
         /* Random orbit radius: sit near the outer edge of the mandala */
-        const radiusPct = 32 + Math.random() * 14; /* 3246% of container */
+        const radiusPct = 32 + Math.random() * 14; /* 32–46% of container */
         const containerW = strangeBg.offsetWidth || 860;
         const r = containerW * radiusPct / 100;
 
@@ -409,8 +409,8 @@ PPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP */
         const startDeg = Math.random() * 360;
         const endDeg   = startDeg + 360; /* full orbit */
 
-        const size  = 2 + Math.random() * 3;   /* 25 px */
-        const dur   = 3.5 + Math.random() * 5; /* 3.58.5 s orbit */
+        const size  = 2 + Math.random() * 3;   /* 2–5 px */
+        const dur   = 3.5 + Math.random() * 5; /* 3.5–8.5 s orbit */
         const delay = -(Math.random() * dur);   /* negative = already in-flight */
 
         spark.style.setProperty('--sz',    `${size}px`);
@@ -424,7 +424,7 @@ PPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP */
         sparksContainer.appendChild(spark);
     }
 
-    /*    2. Power-on flash when section enters viewport (fires once)    */
+    /* ── 2. Power-on flash when section enters viewport (fires once) ── */
     const strangeObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
@@ -438,15 +438,15 @@ PPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP */
 
     strangeObserver.observe(sponsorsSection);
 
-    /*    3. Mouse parallax  circle tilts toward cursor    */
+    /* ── 3. Mouse parallax — circle tilts toward cursor ── */
     sponsorsSection.addEventListener('mousemove', (e) => {
         const rect = sponsorsSection.getBoundingClientRect();
         const cx   = rect.left + rect.width  / 2;
         const cy   = rect.top  + rect.height / 2;
-        const dx   = (e.clientX - cx) / (rect.width  / 2); /* 1 & +1 */
+        const dx   = (e.clientX - cx) / (rect.width  / 2); /* –1 … +1 */
         const dy   = (e.clientY - cy) / (rect.height / 2);
 
-        /* Gentle tilt max �5� */
+        /* Gentle tilt max ±5° */
         const rotX = -dy * 5;
         const rotY =  dx * 5;
 
@@ -460,7 +460,7 @@ PPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP */
         setTimeout(() => { strangeBg.style.transition = ''; }, 900);
     });
 
-    /*    4. Sponsor logo hover � energy burst on the circle    */
+    /* ── 4. Sponsor logo hover → energy burst on the circle ── */
     document.querySelectorAll('.sponsor-logo, .sponsor-placeholder').forEach(logo => {
         logo.addEventListener('mouseenter', () => {
             if (!outerMandala || !innerMandala) return;
@@ -490,7 +490,7 @@ PPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP */
         });
     });
 
-    /*    5. Spin speed reacts to scroll velocity    */
+    /* ── 5. Spin speed reacts to scroll velocity ── */
     let lastScrollY  = window.scrollY;
     let spinMult     = 1;
     let spinRafId    = null;
@@ -498,7 +498,7 @@ PPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP */
     window.addEventListener('scroll', () => {
         const delta    = Math.abs(window.scrollY - lastScrollY);
         lastScrollY    = window.scrollY;
-        spinMult       = Math.min(4, 1 + delta * 0.08); /* max 4� faster */
+        spinMult       = Math.min(4, 1 + delta * 0.08); /* max 4× faster */
 
         if (outerMandala) outerMandala.style.animationDuration = `${28 / spinMult}s`;
         if (innerMandala) innerMandala.style.animationDuration = `${18 / spinMult}s`;
@@ -513,14 +513,14 @@ PPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP */
 
 })();
 
-/* PPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP
-   TIME STONE FAQ  MYSTIC PORTAL JS
+/* ════════════════════════════════════════════════════════════════
+   TIME STONE FAQ — MYSTIC PORTAL JS
    Append this entire block to the END of scripts.js.
-   Replaces the old toggleFaq()  keep the function name if called
+   Replaces the old toggleFaq() — keep the function name if called
    elsewhere; togglePortal() is used by the new HTML.
-PPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP */
+════════════════════════════════════════════════════════════════ */
 
-/*    1. Toggle logic  one open at a time    */
+/* ── 1. Toggle logic — one open at a time ── */
 function togglePortal(qEl) {
     const item    = qEl.closest('.faq-portal-item');
     const isOpen  = item.classList.contains('faq-open');
@@ -541,7 +541,7 @@ function togglePortal(qEl) {
     }
 }
 
-/* Keyboard support  Enter / Space toggles */
+/* Keyboard support — Enter / Space toggles */
 document.querySelectorAll('.faq-portal-q').forEach(q => {
     q.addEventListener('keydown', e => {
         if (e.key === 'Enter' || e.key === ' ') {
@@ -551,7 +551,7 @@ document.querySelectorAll('.faq-portal-q').forEach(q => {
     });
 });
 
-/*    2. Portal burst effect on open    */
+/* ── 2. Portal burst effect on open ── */
 function _portalBurst(item) {
     /* Brief glow flash on the item itself */
     item.style.transition = 'box-shadow 0.12s ease';
@@ -605,7 +605,7 @@ function _portalBurst(item) {
     }
 }
 
-/*    3. Mandala reacts when any FAQ opens  brief speed-up    */
+/* ── 3. Mandala reacts when any FAQ opens — brief speed-up ── */
 const _faqOuter = document.querySelector('.faq-mandala--outer');
 const _faqInner = document.querySelector('.faq-mandala--inner');
 let   _mandalaTimer = null;
@@ -621,7 +621,7 @@ function _mandalaReact() {
     }, 700);
 }
 
-/*    4. Spawn ambient sparks orbiting the background mandala    */
+/* ── 4. Spawn ambient sparks orbiting the background mandala ── */
 (function _spawnFaqSparks() {
     const container = document.getElementById('faq-sparks');
     const bg        = document.querySelector('.faq-magic-bg');
@@ -635,7 +635,7 @@ function _mandalaReact() {
         spark.className = 'faq-spark';
 
         const containerW = bg.offsetWidth || 780;
-        const radiusFrac = 0.33 + Math.random() * 0.14;  /* 3347% of container */
+        const radiusFrac = 0.33 + Math.random() * 0.14;  /* 33–47% of container */
         const r          = containerW * radiusFrac;
         const startDeg   = Math.random() * 360;
         const endDeg     = startDeg + 360;
@@ -655,7 +655,7 @@ function _mandalaReact() {
     }
 })();
 
-/*    5. Mouse parallax on the mandala    */
+/* ── 5. Mouse parallax on the mandala ── */
 (function _faqParallax() {
     const section = document.getElementById('faq');
     const bg      = document.querySelector('.faq-magic-bg');
@@ -676,15 +676,15 @@ function _mandalaReact() {
     });
 })();
 
-/* PPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP
-   THOR STORM LIGHTNING ENGINE  #tracks section
+/* ════════════════════════════════════════════════════════════════
+   THOR STORM LIGHTNING ENGINE — #tracks section
    Append this entire block to the END of scripts.js.
    Zero external dependencies. Scoped entirely to #tracks.
-PPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP */
+════════════════════════════════════════════════════════════════ */
 
 (function ThorStormEngine() {
 
-    /*    DOM refs    */
+    /* ── DOM refs ── */
     const section    = document.getElementById('tracks');
     const canvas     = document.getElementById('thunder-bg');
     const flashEl    = document.getElementById('thunder-flash');
@@ -694,7 +694,7 @@ PPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP */
     const ctx        = canvas.getContext('2d');
     const cards      = section.querySelectorAll('.track-card');
 
-    /*    Resize canvas to match section    */
+    /* ── Resize canvas to match section ── */
     function resizeThunder() {
         const r = section.getBoundingClientRect();
         canvas.width  = r.width;
@@ -705,11 +705,11 @@ PPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP */
     const ro = new ResizeObserver(resizeThunder);
     ro.observe(section);
 
-    /* PPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP
+    /* ════════════════════════════════
        1. LIGHTNING BOLT GENERATOR
-    PPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP */
+    ════════════════════════════════ */
 
-    /* Recursive jagged bolt from (x1,y1) � (x2,y2) */
+    /* Recursive jagged bolt from (x1,y1) → (x2,y2) */
     function buildBolt(x1, y1, x2, y2, roughness, depth) {
         if (depth === 0) return [[x1, y1], [x2, y2]];
 
@@ -809,10 +809,10 @@ PPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP */
 
         function frame(now) {
             const t   = Math.min(1, (now - start) / duration);
-            /* Fast in, slow out  most lightning is brief then lingers faintly */
+            /* Fast in, slow out — most lightning is brief then lingers faintly */
             const op  = t < 0.15 ? t / 0.15 : 1 - ((t - 0.15) / 0.85);
 
-            /* Draw onto the canvas (additive  we don't clear here, clearing is
+            /* Draw onto the canvas (additive — we don't clear here, clearing is
                handled by the idle fade loop) */
             const color     = opts.color     || 'rgba(160,220,255,1)';
             const glowColor = opts.glowColor || 'rgba(0,180,255,0.7)';
@@ -877,9 +877,9 @@ PPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP */
     requestAnimationFrame(fadeLoop);
 
 
-    /* PPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP
+    /* ════════════════════════════════
        2. THUNDER FLASH
-    PPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP */
+    ════════════════════════════════ */
 
     let flashTimer = null;
     function triggerFlash(intensity = 1) {
@@ -895,9 +895,9 @@ PPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP */
     }
 
 
-    /* PPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP
+    /* ════════════════════════════════
        3. RANDOM AMBIENT BOLTS
-    PPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP */
+    ════════════════════════════════ */
 
     let sectionVisible = false;
 
@@ -956,7 +956,7 @@ PPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP */
         }
     }
 
-    /* Schedule ambient bolts every 36s */
+    /* Schedule ambient bolts every 3–6s */
     function scheduleAmbient() {
         ambientStrike();
         const delay = 3000 + Math.random() * 3000;
@@ -978,9 +978,9 @@ PPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP */
     entryObs.observe(section);
 
 
-    /* PPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP
+    /* ════════════════════════════════
        4. CARD HOVER INTERACTIONS
-    PPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP */
+    ════════════════════════════════ */
 
     cards.forEach(card => {
         const ripple = card.querySelector('.thor-ripple');
@@ -1036,9 +1036,9 @@ PPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP */
     });
 
 
-    /* PPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP
-       5. CLICK  MEGA STRIKE
-    PPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP */
+    /* ════════════════════════════════
+       5. CLICK — MEGA STRIKE
+    ════════════════════════════════ */
 
     cards.forEach(card => {
         card.addEventListener('click', () => {

@@ -1067,3 +1067,23 @@ function _mandalaReact() {
     });
 
 })();
+
+/* ── Scroll-spy: highlight active nav section ── */
+(function() {
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('#main-nav .nav-links a');
+    if (!sections.length || !navLinks.length) return;
+ 
+    const spy = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const id = entry.target.getAttribute('id');
+                navLinks.forEach(a => {
+                    a.classList.toggle('nav-active', a.getAttribute('href') === `#${id}`);
+                });
+            }
+        });
+    }, { rootMargin: '-40% 0px -55% 0px' });
+ 
+    sections.forEach(s => spy.observe(s));
+})();
